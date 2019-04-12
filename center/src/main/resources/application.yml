@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: zutnlp-platform-center
+server:
+  port: 18888
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+  serviceUrl:
+    defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  instance:
+    hostname: localhost   #本地开发
+    prefer-ip-address: true
+#    hostname: 202.196.37.147  #服务器生产
+  server:
+    max-threads-for-peer-replication: 0
