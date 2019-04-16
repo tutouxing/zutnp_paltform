@@ -1,5 +1,6 @@
 package zut.cs.core.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import zut.cs.core.base.domain.BaseEntity;
 
@@ -13,19 +14,18 @@ import java.util.Set;
  * @description:
  */
 @Entity
-@AllArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
 public class User extends BaseEntity {
 
     private static final long serialVersionUID = -4376674977047164L;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "group_id")
     Group group;
     @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
-    Set<Channel> chennels;
+    Set<Channel> channels;
     @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     Set<Content> contents;
 

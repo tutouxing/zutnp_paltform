@@ -1,5 +1,6 @@
 package zut.cs.core.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import zut.cs.core.base.domain.BaseTreeEntity;
 
@@ -14,16 +15,15 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "admin_group")
-@AllArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
 @NamedQueries({@NamedQuery(name = "Group.getRoot", query = "select g from Group g where g.parent is null")})
 public class Group extends BaseTreeEntity<Group> {
-//    private static final long serialVersionUID = -175195222437199846L;
+    private static final long serialVersionUID = -175195222437199846L;
 
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "group", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     Set<User> users;
     @ManyToMany

@@ -29,8 +29,6 @@ public class LoginController {
     GroupManager groupManager;
     @Autowired
     ChannelManager channelManager;
-    @Autowired
-    ContentManager contentManager;
 
     @PostMapping("/login")
     public UserInfo login(@RequestBody User user) {
@@ -39,8 +37,7 @@ public class LoginController {
         if (user.getPassword().equals(user1.getPassword())) {
             //如果用户未分配组，进行分配至基础组(基本权限)
             if (user1.getGroup() == null) {
-                Set<Channel> channels=channelManager.findUsers(user1);
-                Set<Content> contents=contentManager.findUsers(user1);
+                Set<Channel> channels = channelManager.findUsers(user1);
                 Group group = groupManager.findById(Long.valueOf(5));
                 user1.setGroup(group);
                 userManager.save(user1);
@@ -51,13 +48,10 @@ public class LoginController {
                 groupManager.save(group);
                 userInfo.setGroup(group);
                 userInfo.setChannel(channels);
-                userInfo.setContent(contents);
                 return userInfo;
-            }
-            else {
-                Set<Channel> channels=channelManager.findUsers(user1);
-                Set<Content> contents=contentManager.findUsers(user1);
-                Group group=user1.getGroup();
+            } else {
+                Set<Channel> channels = channelManager.findUsers(user1);
+                Group group = user1.getGroup();
                 group.setTheme(user1.getTheme());
                 group.setPage1(user1.getPage1());
                 group.setPage2(user1.getPage2());
@@ -65,7 +59,6 @@ public class LoginController {
                 groupManager.save(group);
                 userInfo.setGroup(group);
                 userInfo.setChannel(channels);
-                userInfo.setContent(contents);
                 return userInfo;
             }
         }

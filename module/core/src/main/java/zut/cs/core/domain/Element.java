@@ -17,8 +17,6 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class Element extends BaseEntity {
     private String name;
     private String code;

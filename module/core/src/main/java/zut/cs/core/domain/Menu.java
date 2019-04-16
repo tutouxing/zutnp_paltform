@@ -1,5 +1,6 @@
 package zut.cs.core.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import zut.cs.core.base.domain.BaseTreeEntity;
 
@@ -13,10 +14,8 @@ import java.util.Set;
  * @description:
  */
 @Entity
-@AllArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
 @NamedQueries({@NamedQuery(name = "Menu.getRoot", query = "select m from Menu m where m.parent is null")})
 public class Menu extends BaseTreeEntity<Menu> {
     private String code;
@@ -25,6 +24,7 @@ public class Menu extends BaseTreeEntity<Menu> {
     private String description;
     @ManyToMany(mappedBy = "menus", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     Set<Element> elements;
+    @JsonIgnore
     @ManyToMany(mappedBy = "menus", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     Set<Group> groups;
 }
