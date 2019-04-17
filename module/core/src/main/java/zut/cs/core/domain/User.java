@@ -24,9 +24,9 @@ public class User extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "group_id")
     Group group;
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE}, fetch = FetchType.EAGER)
     Set<Channel> channels;
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE}, fetch = FetchType.EAGER)
     Set<Content> contents;
 
     private String userAccount;

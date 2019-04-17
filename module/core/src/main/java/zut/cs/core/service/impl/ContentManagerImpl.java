@@ -27,7 +27,7 @@ public class ContentManagerImpl extends GenericManagerImpl<Content, Long> implem
     }
 
     @Override
-    public Set<Content> findUsers(User user) {
-        return contentDao.findByUser(user);
+    public Set<Content> findByTitle(String title) {
+        return contentDao.findTitleLike(title);
     }
 }

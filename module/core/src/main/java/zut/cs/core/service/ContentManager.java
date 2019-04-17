@@ -12,5 +12,5 @@ import java.util.Set;
 */
 
 public interface ContentManager extends GenericManager<Content, Long> {
-    Set<Content> findUsers(User user);
+    Set<Content> findByTitle(String title);
 }
