@@ -17,6 +17,11 @@ public class Content extends BaseEntity {
     private String title;
     private String text;
     private String textHref;
+    private String type;
+    private int rank;
+    private String publish;
+    private int click_count;
+    private String status;
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "channel_id")

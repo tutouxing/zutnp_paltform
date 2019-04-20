@@ -1,5 +1,7 @@
 package zut.cs.core.service.impl;
 
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import zut.cs.core.base.service.impl.GenericManagerImpl;
 import zut.cs.core.dao.ContentDao;
 import zut.cs.core.domain.Content;
@@ -26,6 +28,7 @@ public class ContentManagerImpl extends GenericManagerImpl<Content, Long> implem
         this.dao = this.contentDao;
     }
 
+    @Cacheable(value = "content")
     @Override
     public Set<Content> findByTitle(String title) {
         return contentDao.findTitleLike(title);

@@ -1,5 +1,6 @@
 package zut.cs.core.service.impl;
 
+import org.springframework.cache.annotation.Cacheable;
 import zut.cs.core.base.service.impl.GenericTreeManagerImpl;
 import zut.cs.core.dao.MenuDao;
 import zut.cs.core.domain.Menu;
@@ -27,6 +28,7 @@ public class MenuManagerImpl extends GenericTreeManagerImpl<Menu,Long> implement
         this.dao=this.treeDao;
     }
 
+    @Cacheable(value = "menu")
     @Override
     public List<Menu> findAllMneus() {
         return menuDao.findMenusByParentIsNull();
