@@ -6,7 +6,7 @@ spring:
     hibernate:
       ddl-auto: update
   application:
-    name: zutnlp-platform-admin
+    name: zutnlp-platform-core
   boot:
     admin:
       client:
@@ -19,16 +19,16 @@ spring:
 #    password: root
 #    url: jdbc:mysql://localhost:3306/zutnlp_cs_admin?useUnicode=true&characterEncoding=utf8 #本地开发
     url: jdbc:mysql://202.196.37.146:3306/zutnlp_cs_admin?useUnicode=true&characterEncoding=utf8 #服务器开发
-#eureka:
-#  instance:
-#    hostname: ${spring.application.name}
-#    prefer-ip-address: true
-#  client:
-#    service-url:
+eureka:
+  instance:
+    hostname: ${spring.application.name}
+    prefer-ip-address: true
+  client:
+    service-url:
 #      defaultZone: http://202.196.37.169:18888/eureka/ #服务器环境
-#      defaultZone: http://127.0.0.1:18888/eureka/ #本地开发
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: "*"
+      defaultZone: http://127.0.0.1:18888/eureka/ #本地开发
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
