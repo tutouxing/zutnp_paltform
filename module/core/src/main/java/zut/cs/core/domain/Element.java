@@ -1,5 +1,6 @@
 package zut.cs.core.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import zut.cs.core.base.domain.BaseEntity;
 
@@ -22,6 +23,7 @@ public class Element extends BaseEntity {
     private String code;
     private String method;
     private String type;
+    @JsonIgnore
     @ManyToMany
     @JoinColumn(name = "menu_id")
     Set<Menu> menus;

@@ -15,3 +15,4 @@ eureka:
 #    hostname: 202.196.37.147  #服务器生产
   server:
     max-threads-for-peer-replication: 0
+

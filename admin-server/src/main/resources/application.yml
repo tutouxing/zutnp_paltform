@@ -1,7 +1,7 @@
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:18888/eureka #本地开发
+      defaultZone: http://root:root@localhost:18888/eureka #本地开发
 #      defaultZone: http://202.196.37.147:18888/eureka #服务器环境
 management:
   security:
