@@ -11,59 +11,67 @@ import edu.stanford.nlp.semgraph.SemanticGraphCoreAnnotations;
 import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.trees.TreeCoreAnnotations;
 import edu.stanford.nlp.util.CoreMap;
+import zut.cs.nlp.bean.Result;
+import zut.cs.nlp.utils.En2Ch;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class StanfordChineseNlpExample {
 
+    private Result result = new Result();
+    private En2Ch en2Ch = new En2Ch();
 
     public static void main(String[] args) {
-
-        StanfordChineseNlpExample example = new StanfordChineseNlpExample();
-
-        example.runChineseAnnotators();
+        StanfordChineseNlpExample nlp = new StanfordChineseNlpExample();
+        Result result = nlp.runChineseAnnotators("热闹了一个夏天的高温天气，终于在8月即将要终结的几天里大张旗鼓的凉爽起来。说起来，这种突如其来的凉意有些措手不及，还好，我前段时间刚好购置了秋天的衣服，也不至于打开衣柜不知道穿什么好了。");
+        System.out.println(result);
 
     }
 
-    public void runChineseAnnotators(){
+    public Result runChineseAnnotators(String text) {
 
-        String text = "克林顿说，华盛顿将逐步落实对韩国的经济援助。"
-                + "金大中对克林顿的讲话报以掌声：克林顿总统在会谈中重申，他坚定地支持韩国摆脱经济危机。";
         Annotation document = new Annotation(text);
         StanfordCoreNLP corenlp = new StanfordCoreNLP("StanfordCoreNLP-chinese.properties");
         corenlp.annotate(document);
-        parserOutput(document);
+        return parserOutput(document);
     }
 
-    public void parserOutput(Annotation document){
+    public Result parserOutput(Annotation document) {
         // these are all the sentences in this document
         // a CoreMap is essentially a Map that uses class objects as keys and has values with custom types
         List<CoreMap> sentences = document.get(CoreAnnotations.SentencesAnnotation.class);
+        List<Result.Wpn> wpns = new ArrayList<>();
 
-        for(CoreMap sentence: sentences) {
+        for (CoreMap sentence : sentences) {
             // traversing the words in the current sentence
             // a CoreLabel is a CoreMap with additional token-specific methods
-            for (CoreLabel token: sentence.get(CoreAnnotations.TokensAnnotation.class)) {
+            for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
                 // this is the text of the token
                 String word = token.get(CoreAnnotations.TextAnnotation.class);
                 // this is the POS tag of the token
                 String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
                 // this is the NER label of the token
                 String ne = token.get(CoreAnnotations.NamedEntityTagAnnotation.class);
-
-                System.out.println(word+"\t"+pos+"\t"+ne);
+                Result.Wpn wpn = new Result.Wpn();
+                wpn.setWord(word);
+                wpn.setPos(pos);
+                wpn.setNe(ne);
+                wpns.add(wpn);
+                result.setWpns(wpns);
+                System.out.println(result);
             }
 
             // this is the parse tree of the current sentence
             Tree tree = sentence.get(TreeCoreAnnotations.TreeAnnotation.class);
-            System.out.println("语法树：");
-            System.out.println(tree.toString());
+            result.setTree(tree.toString());
+            System.out.println(tree);
 
             // this is the Stanford dependency graph of the current sentence
             SemanticGraph dependencies = sentence.get(SemanticGraphCoreAnnotations.CollapsedCCProcessedDependenciesAnnotation.class);
-            System.out.println("依存句法：");
-            System.out.println(dependencies.toString());
+            result.setDependency(dependencies.toString());
+            System.out.println(dependencies);
         }
 
         // This is the coreference link graph
@@ -72,5 +80,6 @@ public class StanfordChineseNlpExample {
         // Both sentence and token offsets start at 1!
         Map<Integer, CorefChain> graph =
                 document.get(CorefCoreAnnotations.CorefChainAnnotation.class);
+        return result;
     }
 }
