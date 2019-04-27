@@ -14,6 +14,7 @@
     <modules>
         <module>core</module>
         <module>nlp</module>
+        <module>nlp-ribbon</module>
     </modules>
 
 
