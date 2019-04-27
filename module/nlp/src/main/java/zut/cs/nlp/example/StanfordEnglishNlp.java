@@ -19,12 +19,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-public class StanfordEnglishNlpExample {
+public class StanfordEnglishNlp {
     private Result result = new Result();
     private En2Ch en2Ch = new En2Ch();
 
-    public Result runAllAnnotators(String text,String lang) {
-        if (lang.equals("english")) {
+    public Result runAllAnnotators(String text) {
             // creates a StanfordCoreNLP object, with POS tagging, lemmatization, NER, parsing, and coreference resolution
             Properties props = new Properties();
             props.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref");
@@ -34,12 +33,6 @@ public class StanfordEnglishNlpExample {
             // run all Annotators on this text
             pipeline.annotate(document);
             return parserOutput(document);
-        } else {
-            Annotation document = new Annotation(text);
-            StanfordCoreNLP corenlp = new StanfordCoreNLP("StanfordCoreNLP-chinese.properties");
-            corenlp.annotate(document);
-            return parserOutput(document);
-        }
     }
 
     public Result parserOutput(Annotation document) {

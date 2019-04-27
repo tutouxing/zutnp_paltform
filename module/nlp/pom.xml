@@ -34,5 +34,23 @@
             <version>${corenlp.version}</version>
             <classifier>models-chinese</classifier>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.cloud</groupId>-->
+            <!--<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>-->
+            <!--<version>2.0.1.RELEASE</version>-->
+        <!--</dependency>-->
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.0.5.RELEASE</version>
+                <configuration>
+                    <mainClass>zut.cs.ribbon.NlpApp</mainClass>
+                    <layout>JAR</layout>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
