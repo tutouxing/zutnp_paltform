@@ -4,10 +4,12 @@ import org.springframework.web.bind.annotation.*;
 import zut.cs.core.base.rest.GenericController;
 import zut.cs.core.domain.Channel;
 import org.springframework.beans.factory.annotation.Autowired;
+import zut.cs.core.domain.User;
 import zut.cs.core.service.ChannelManager;
 import zut.cs.core.service.UserManager;
 
 import java.util.Date;
+import java.util.Set;
 
 /*
     Authod：dd
@@ -42,6 +44,13 @@ public class ChannelController extends GenericController<Channel, Long, ChannelM
         channel.setUser(userManager.findById(Long.valueOf(userId)));
         channelManager.save(channel);
         return channel;
+    }
+
+    @GetMapping("userid")
+    public Set<Channel> getChannelById(@RequestParam long id){
+        User user=new User();
+        user.setId(id);
+        return channelManager.findUsers(user);
     }
 }
 
