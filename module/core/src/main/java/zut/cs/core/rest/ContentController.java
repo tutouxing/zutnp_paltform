@@ -1,5 +1,7 @@
 package zut.cs.core.rest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 import zut.cs.core.base.rest.GenericController;
 import zut.cs.core.domain.Content;
@@ -17,6 +19,7 @@ import java.util.Set;
 
 @Controller
 @RequestMapping("/Content")
+@Api(tags = "内容接口")
 public class ContentController extends GenericController<Content, Long, ContentManager> {
     ContentManager contentManager;
     @Autowired
@@ -47,6 +50,7 @@ public class ContentController extends GenericController<Content, Long, ContentM
         contentManager.save(content);
         return content;
     }
+    @ApiOperation(value = ("通过标题查找内容(return 数组)"))
     @GetMapping("getByTitle/")
     public Set<Content> getByTitle(String title){
         return contentManager.findByTitle(title);

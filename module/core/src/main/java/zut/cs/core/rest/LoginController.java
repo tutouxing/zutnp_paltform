@@ -1,5 +1,6 @@
 package zut.cs.core.rest;
 
+import io.swagger.annotations.Api;
 import zut.cs.core.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import java.util.Set;
  * @description:
  */
 @RestController
+@Api(tags = "登录接口")
 public class LoginController {
     @Autowired
     UserManager userManager;

@@ -1,5 +1,5 @@
 server:
-  port: 19999
+  port: 19998
   max-http-header-size: 102400 #设置请求头
   connection-timeout: 1000s
 spring:

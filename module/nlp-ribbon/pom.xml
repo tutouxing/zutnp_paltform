@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>nlp</artifactId>
+    <artifactId>nlp-ribbon</artifactId>
     <properties>
         <corenlp.version>3.6.0</corenlp.version>
         <hystrix.version>1.4.6.RELEASE</hystrix.version>

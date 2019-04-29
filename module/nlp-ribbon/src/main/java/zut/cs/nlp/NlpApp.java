@@ -12,9 +12,9 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
 @EnableSwagger2Doc
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @EnableEurekaClient
+@EnableCircuitBreaker
 @EnableHystrix
 @EnableHystrixDashboard
-@EnableCircuitBreaker
 public class NlpApp {
     public static void main(String[] args) {
         SpringApplication.run(NlpApp.class);
