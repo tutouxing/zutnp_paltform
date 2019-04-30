@@ -13,6 +13,7 @@ import zut.cs.core.base.service.GenericManager;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 public abstract class GenericController<T extends BaseEntity, PK extends Serializable, M extends GenericManager<T,PK>>
@@ -72,6 +73,7 @@ public abstract class GenericController<T extends BaseEntity, PK extends Seriali
         this.page = this.manager.findAll(this.pageable);
         return this.page;
     }
+
 
     /**
      * @param id

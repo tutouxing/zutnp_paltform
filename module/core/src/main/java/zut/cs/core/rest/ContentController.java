@@ -12,6 +12,7 @@ import zut.cs.core.service.ContentManager;
 import zut.cs.core.service.UserManager;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 /*
     Authod：dd
@@ -54,6 +55,11 @@ public class ContentController extends GenericController<Content, Long, ContentM
     @GetMapping("getByTitle/")
     public Set<Content> getByTitle(String title){
         return contentManager.findByTitle(title);
+    }
+    @ApiOperation(value = "得到当前用户和栏目下的所有内容")
+    @GetMapping("/list")
+    public Set<Content> getAll(long userId,long channelId){
+        return contentManager.findAll(userId,channelId);
     }
 }
 

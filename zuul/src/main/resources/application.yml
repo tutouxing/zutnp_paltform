@@ -14,4 +14,4 @@ zuul:
   routes:
     api:
       path: /core/**
-      serviceId: server-admin
+      serviceId: core
