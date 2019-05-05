@@ -17,7 +17,7 @@ spring:
     password: zutnlp_123
 #    username: root
 #    password: root
-#    url: jdbc:mysql://localhost:3306/zutnlp_cs_admin?useUnicode=true&characterEncoding=utf8 #本地开发
+#   url: jdbc:mysql://localhost:3306/zutnlp_cs_admin?useUnicode=true&characterEncoding=utf8 #本地开发
     url: jdbc:mysql://202.196.37.146:3306/zutnlp_cs_admin?useUnicode=true&characterEncoding=utf8 #服务器开发
 eureka:
   instance:
