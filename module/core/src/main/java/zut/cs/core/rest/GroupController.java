@@ -1,5 +1,7 @@
 package zut.cs.core.rest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import zut.cs.core.base.rest.GenericTreeController;
 import zut.cs.core.domain.Group;
 import zut.cs.core.domain.Menu;
@@ -21,6 +23,7 @@ import java.util.Set;
  */
 @RestController
 @RequestMapping("group")
+@Api(tags = "用户组接口")
 public class GroupController extends GenericTreeController<Group, Long, GroupManager> {
     GroupManager groupManager;
     @Autowired
@@ -35,6 +38,7 @@ public class GroupController extends GenericTreeController<Group, Long, GroupMan
         this.manager = this.treeManager;
     }
 
+    @ApiOperation(value = "根据组ID添加用户")
     @PostMapping("addUsers")
     public void addUser(@RequestParam String groupId, @RequestParam List<String> usersId) {
         if (usersId.size() > 0) {
@@ -42,31 +46,37 @@ public class GroupController extends GenericTreeController<Group, Long, GroupMan
         }
     }
 
+    @ApiOperation(value = "通过组ID查找用户(return 数组)")
     @GetMapping("getUsers")
     public Set<User> getUsers(@RequestParam String groupId) {
         return this.groupManager.getUsers(groupId);
     }
 
+    @ApiOperation(value = "删除多个用户")
     @DeleteMapping("removeUsers")
     public void removeUsers(@RequestParam List<String> usersId) {
         this.groupManager.removeUsers(usersId);
     }
 
+    @ApiOperation(value = "根据组ID得到所有菜单")
     @GetMapping("getMenus")
     public Set<Menu> getMenus(@RequestParam String groupId) {
         return this.groupManager.getMenus(groupId);
     }
 
+    @ApiOperation(value = "添加多个菜单")
     @PostMapping("addMenus")
     public void addMenus(@RequestParam String groupId, @RequestParam List<String> menusId) {
         this.groupManager.addMenus(groupId, menusId);
     }
 
+    @ApiOperation(value = "更新多个菜单")
     @PutMapping("updateMneus")
     public void updateMneus(@RequestParam String groupId, @RequestParam List<String> menusId) {
         this.groupManager.updateMenus(groupId, menusId);
     }
 
+    @ApiOperation(value = "得到所有用户组")
     @GetMapping("list")
     public List<Group> getList() {
         return groupManager.getAllGroup();

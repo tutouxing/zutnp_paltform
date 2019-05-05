@@ -1,5 +1,6 @@
 package zut.cs.core.base.rest;
 
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,6 +13,7 @@ import zut.cs.core.base.service.GenericManager;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 public abstract class GenericController<T extends BaseEntity, PK extends Serializable, M extends GenericManager<T,PK>>
@@ -29,6 +31,7 @@ public abstract class GenericController<T extends BaseEntity, PK extends Seriali
      * @param model
      * @return
      */
+    @ApiOperation(value = "创建实体")
     @PostMapping("/")
     public T create(@RequestBody T model) {
         this.model = model;
@@ -43,6 +46,7 @@ public abstract class GenericController<T extends BaseEntity, PK extends Seriali
      * @param id
      * @throws IOException
      */
+    @ApiOperation(value = "通过ID删除实体")
     @DeleteMapping("/{id}")
     public void delete(@PathVariable PK id) throws IOException {
         this.manager.delete(id);
@@ -55,6 +59,7 @@ public abstract class GenericController<T extends BaseEntity, PK extends Seriali
      * @paramresponse
      * @return
      */
+    @ApiOperation(value = "得到分页列表")
     @GetMapping(value = "/")
     public Page<T> get(@RequestParam(name = "page", defaultValue = "0") String pageNumber,
                        @RequestParam(name = "limit", defaultValue = "20") String pageSize) {
@@ -69,10 +74,12 @@ public abstract class GenericController<T extends BaseEntity, PK extends Seriali
         return this.page;
     }
 
+
     /**
      * @param id
      * @return
      */
+    @ApiOperation(value = "通过ID得到实体")
     @GetMapping("/{id}")
     public T getOne(@PathVariable PK id) {
         return this.manager.findById(id);
@@ -83,6 +90,7 @@ public abstract class GenericController<T extends BaseEntity, PK extends Seriali
      * @param model
      * @return
      */
+    @ApiOperation(value ="通过ID修改实体")
     @PutMapping("/{id}")
     public T update(@PathVariable PK id, @RequestBody T model) {
         model.setId(Long.valueOf(id.toString()));
