@@ -1,12 +1,13 @@
 server:
   port: 8848
+  max-http-header-size: 102400
 spring:
   jpa:
     show-sql: true
     hibernate:
       ddl-auto: update
   application:
-    name: zutnlp-platform-core
+    name: core
   boot:
     admin:
       client:
@@ -25,10 +26,10 @@ eureka:
     prefer-ip-address: true
   client:
     service-url:
-#      defaultZone: http://202.196.37.169:18888/eureka/ #服务器环境
-      defaultZone: http://127.0.0.1:18888/eureka/ #本地开发
+      defaultZone: http://127.0.0.1:18888/eureka/  #本地开发
 management:
   endpoints:
     web:
+      base-path: /
       exposure:
-        include: "*"
+        include: 'hystrix.stream,health,status'
