@@ -1,6 +1,6 @@
 package zut.cs.core.rest;
 
-import edu.zut.cs.zutnlp.platform.dao.admin.domain.User;
+//import edu.zut.cs.zutnlp.platform.dao.admin.domain.User;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
@@ -54,11 +54,11 @@ public class ChannelController extends GenericController<Channel, Long, ChannelM
 
 
     @GetMapping("userid")
-    public Set<Channel> getChannelById(@RequestParam long id){
-        User user=new User();
+    public Set<Channel> getChannelById(@RequestParam long id) {
+        User user = new User();
         user.setId(id);
         return channelManager.findUsers(user);
-
+    }
     @ApiOperation(value = "得到当前用户下的所有栏目")
     @GetMapping("/list")
     public Set<Channel> getAll(String userId){
