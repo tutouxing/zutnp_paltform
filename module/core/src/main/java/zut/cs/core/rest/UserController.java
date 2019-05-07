@@ -1,5 +1,7 @@
 package zut.cs.core.rest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import zut.cs.core.base.rest.GenericController;
 import zut.cs.core.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/user")
+@Api(tags = "用户接口")
 public class UserController extends GenericController<User, Long, UserManager> {
     UserManager userManager;
 
@@ -25,18 +28,20 @@ public class UserController extends GenericController<User, Long, UserManager> {
         this.manager = this.userManager;
     }
 
+    @ApiOperation(value = "通过用户名查找")
     @GetMapping("getByName")
     public User getUser(@RequestParam String username) {
         return this.userManager.findByUsername(username);
     }
 
     //设置用户页面
+    @ApiOperation(value = "设置用户页面")
     @PostMapping("setPages")
     public void setPages(@RequestParam String userId,@RequestParam List<String> pages) {
         User user=userManager.findById(Long.valueOf(userId));
-        user.setTheme(pages.get(0));
-        user.setPage1(pages.get(1));
-        user.setPage2(pages.get(2));
+        user.setTheme(pages.get(2));
+        user.setPage1(pages.get(0));
+        user.setPage2(pages.get(1));
         userManager.save(user);
     }
 }

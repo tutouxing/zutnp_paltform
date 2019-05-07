@@ -1,5 +1,7 @@
 package zut.cs.core.rest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import zut.cs.core.base.rest.GenericTreeController;
 import zut.cs.core.domain.Menu;
 import zut.cs.core.service.ElementManager;
@@ -13,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("menu")
+@Api(tags = "菜单接口")
 public class MenuController extends GenericTreeController<Menu,Long,MenuManager> {
     @Autowired
     ElementManager elementManager;
@@ -23,6 +26,7 @@ public class MenuController extends GenericTreeController<Menu,Long,MenuManager>
         this.treeManager=this.menuManager;
         this.manager=this.treeManager;
     }
+    @ApiOperation(value = "得到所有菜单")
     @GetMapping("list")
     public List<Menu> getAll(){
         return menuManager.findAllMneus();

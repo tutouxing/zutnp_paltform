@@ -4,6 +4,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import zut.cs.core.base.service.impl.GenericManagerImpl;
 import zut.cs.core.dao.ContentDao;
+import zut.cs.core.domain.Channel;
 import zut.cs.core.domain.Content;
 import zut.cs.core.domain.User;
 import zut.cs.core.service.ContentManager;
@@ -32,5 +33,10 @@ public class ContentManagerImpl extends GenericManagerImpl<Content, Long> implem
     @Override
     public Set<Content> findByTitle(String title) {
         return contentDao.findTitleLike(title);
+    }
+
+    @Override
+    public Set<Content> findAll(long userId,long channelId) {
+        return contentDao.findAllByUser_IdAndChannel_Id(userId,channelId);
     }
 }

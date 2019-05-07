@@ -1,0 +1,19 @@
+server:
+  port: 19996
+spring:
+  application:
+    name: turbine
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:18888/eureka/
+  instance:
+    prefer-ip-address: true
+turbine:
+  app-config: nlp,core
+  cluster-name-expression: "'default'"
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

@@ -1,5 +1,6 @@
 package zut.cs.core.base.rest;
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.web.bind.annotation.*;
 import zut.cs.core.base.domain.BaseTreeEntity;
@@ -24,6 +25,7 @@ public abstract class GenericTreeController<T extends BaseTreeEntity<T>, PK exte
 	 * @return
 	 */
 
+	@ApiOperation(value = "通过ID得到本实体的所有孩子")
 	@GetMapping("/getChildren/{id}")
 	public List<T> getChildren(@PathVariable PK id) {
 		List<T> result = this.treeManager.getChildren(id);
@@ -37,6 +39,7 @@ public abstract class GenericTreeController<T extends BaseTreeEntity<T>, PK exte
 	 * @paramresponse
 	 * @return
 	 */
+	@ApiOperation(value = "通过ID得到本实体的所有孩子")
 	@GetMapping("/getTree/{id}")
 	public List<T> getTree(@PathVariable PK id) {
 		List<T> result = null;
@@ -48,6 +51,7 @@ public abstract class GenericTreeController<T extends BaseTreeEntity<T>, PK exte
 		}
 		return result;
 	}
+	@ApiOperation(value = "删除孩子节点")
 	@Override
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable PK id) throws IOException {
@@ -56,11 +60,13 @@ public abstract class GenericTreeController<T extends BaseTreeEntity<T>, PK exte
 			return ;
 			this.treeManager.delete(id);
 	}
+	@ApiOperation(value = "添加孩子节点")
 	@PostMapping("/addChild/{id}")
 	public void addChild(@PathVariable PK id,@RequestBody T t)
 	{
 		this.treeManager.addChild(id,t);
 	}
+	@ApiOperation(value = "更改孩子节点")
 	@PutMapping("updateChild/{id}")
 	public void updateChild(@PathVariable PK id,@RequestBody T t){
 		this.treeManager.updateChild(id,t);
