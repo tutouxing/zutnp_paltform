@@ -39,9 +39,9 @@ public class UserController extends GenericController<User, Long, UserManager> {
     @PostMapping("setPages")
     public void setPages(@RequestParam String userId,@RequestParam List<String> pages) {
         User user=userManager.findById(Long.valueOf(userId));
-        user.setTheme(pages.get(0));
-        user.setPage1(pages.get(1));
-        user.setPage2(pages.get(2));
+        user.setTheme(pages.get(2));
+        user.setPage1(pages.get(0));
+        user.setPage2(pages.get(1));
         userManager.save(user);
     }
 }
