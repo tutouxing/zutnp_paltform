@@ -1,0 +1,10 @@
+target
+/turbine/*.iml
+.idea
+libraries
+/admin-server/*.iml
+/center/*.iml
+/module/*.iml
+/zuul/*.iml
+/module/core/*.iml
+/module/nlp/nlp.iml
