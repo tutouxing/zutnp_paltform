@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import zut.cs.core.domain.User;
 import zut.cs.core.service.ChannelManager;
 import zut.cs.core.service.UserManager;
+import zut.cs.util.UpdateUtil;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 import java.util.Set;
 
@@ -44,12 +46,14 @@ public class ChannelController extends GenericController<Channel, Long, ChannelM
 
     @ApiOperation(value = "更改栏目")
     @PutMapping("update/")
-    public Channel update(@RequestBody Channel channel, String channelId, String userId) {
+    public Channel update(@RequestBody Channel channel, String channelId, String userId) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         channel.setDateModified(new Date());
-        channel.setId(Long.valueOf(channelId));
         channel.setUser(userManager.findById(Long.valueOf(userId)));
-        channelManager.save(channel);
-        return channel;
+        Channel channel1 = channelManager.findById(Long.valueOf(channelId));
+        Channel channel2 = (Channel) UpdateUtil.get(channel, channel1);
+        channel2.setId(Long.valueOf(channelId));
+        channelManager.save(channel2);
+        return channel2;
     }
 
 

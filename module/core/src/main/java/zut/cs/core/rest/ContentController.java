@@ -10,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import zut.cs.core.service.ChannelManager;
 import zut.cs.core.service.ContentManager;
 import zut.cs.core.service.UserManager;
+import zut.cs.util.UpdateUtil;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -43,13 +45,15 @@ public class ContentController extends GenericController<Content, Long, ContentM
         return content;
     }
     @PutMapping("update/")
-    public Content updateByChannelAndUserId(@RequestBody Content content,String contentId,String channelId,String userId){
+    public Content updateByChannelAndUserId(@RequestBody Content content,String contentId,String channelId,String userId) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         content.setDateModified(new Date());
-        content.setId(Long.valueOf(contentId));
         content.setChannel(channelManager.findById(Long.valueOf(channelId)));
         content.setUser(userManager.findById(Long.valueOf(userId)));
-        contentManager.save(content);
-        return content;
+        Content content1 = contentManager.findById(Long.valueOf(contentId));
+        content.setId(Long.valueOf(contentId));
+        Content o = (Content) UpdateUtil.get(content, content1);
+        contentManager.save(o);
+        return o;
     }
     @ApiOperation(value = ("通过标题查找内容(return 数组)"))
     @GetMapping("getByTitle/")
