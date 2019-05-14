@@ -15,5 +15,5 @@ public interface PictureManager extends GenericManager<Picture,Long> {
      * @CreateDate: 2019/5/14$ 15:29$
 
      */
-    Set<Picture> findByContent(Long content_id);
+    Set<Picture> findByContent(Content content);
 }
