@@ -51,13 +51,14 @@ public class PictureController extends GenericController<Picture,Long, PictureMa
 
     @ResponseBody
     @RequestMapping("/fileUpload")
-    public String upload(@RequestParam("file") MultipartFile file,Long content_id ){
+    public String upload(@RequestParam("file") MultipartFile file){
         //1定义要上传文件 的存放路径
         String localPath="E:/images/upload";
         //2获得文件名字
         String fileName=file.getOriginalFilename();
         //2上传失败提示
         String warning="";
+        String hostUrl=null;
         String realPath = localPath + "/" + FileNameUtils.getFileName(fileName);
         System.out.println("realpath:"+realPath);
         if(FileUtils.upload(file, realPath, fileName)){
@@ -66,7 +67,7 @@ public class PictureController extends GenericController<Picture,Long, PictureMa
             //图片信息保存到数据库
             Picture picture = new Picture();
             //部署服务器地址
-            String hostUrl = "http://118.25.191.46:8080"+realPath.substring(realPath.indexOf(":")+1);
+            hostUrl = "http://118.25.191.46:8080"+realPath.substring(realPath.indexOf(":")+1);
             //本地运行
 //            String hostUrl = "http://localhost:8080"+realPath.substring(realPath.indexOf(":")+1);
 //            System.out.println(path.substring(path.indexOf(":")+1));
@@ -78,7 +79,7 @@ public class PictureController extends GenericController<Picture,Long, PictureMa
             warning="上传失败";
         }
         System.out.println(warning);
-        return "上传成功";
+        return hostUrl;
     }
 
     @ApiOperation(value = "得到与内容相关的所有图片")
