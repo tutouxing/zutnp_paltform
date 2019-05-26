@@ -9,9 +9,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 import zut.cs.core.base.domain.BaseEntity;
 import zut.cs.core.base.service.GenericManager;
+import zut.cs.util.UpdateUtil;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 import java.util.List;
 
@@ -92,11 +94,14 @@ public abstract class GenericController<T extends BaseEntity, PK extends Seriali
      */
     @ApiOperation(value ="通过ID修改实体")
     @PutMapping("/{id}")
-    public T update(@PathVariable PK id, @RequestBody T model) {
-        model.setId(Long.valueOf(id.toString()));
+    public T update(@PathVariable PK id, @RequestBody T model) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+//        model.setId(Long.valueOf(id.toString()));
+        T t = this.manager.findById(id);
         model.setDateModified(new Date());// 更新修改时间
-        this.model = this.manager.save(model);
-        return this.model;
+        T res = (T) UpdateUtil.get(model, t);
+        res.setId((Long) id);
+        this.model = this.manager.save(res);
+        return res;
     }
 
 }
