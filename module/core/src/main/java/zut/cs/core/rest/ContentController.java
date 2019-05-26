@@ -41,6 +41,8 @@ public class ContentController extends GenericController<Content, Long, ContentM
         content.setDateCreated(new Date());
         content.setChannel(channelManager.findById(Long.valueOf(channelId)));
         content.setUser(userManager.findById(Long.valueOf(userId)));
+        //处理content中的本地图片
+
         contentManager.save(content);
         return content;
     }
