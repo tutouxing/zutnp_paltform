@@ -13,9 +13,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>core</module>
-        <module>nlp</module>
-        <module>nlp-ribbon</module>
+        <module>nlp-server1</module>
+        <module>nlp-server2</module>
     </modules>
-
 
 </project>

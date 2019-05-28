@@ -1,5 +1,6 @@
 package zut.cs.core.rest;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import io.swagger.annotations.Api;
 import zut.cs.core.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ public class LoginController {
     @Autowired
     ComponentManager componentManager;
 
+    @HystrixCommand
     @PostMapping("/login")
     public UserInfo login(@RequestBody User user) {
         UserInfo userInfo = new UserInfo();
