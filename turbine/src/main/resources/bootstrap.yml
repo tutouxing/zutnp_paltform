@@ -1,0 +1,20 @@
+eureka:
+  instance:
+    hostname: ${spring.application.name}
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://root:123456@localhost:18888/eureka/
+      appname: turbine
+spring:
+  application:
+    name: turbine
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server
+      fail-fast: false
+      profile: dev
+      name: turbine
+      label: master

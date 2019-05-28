@@ -1,0 +1,24 @@
+server:
+  port: 18888
+spring:
+  application:
+    name: center
+  security:
+    user:
+      name: root
+      password: 123456
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    serviceUrl:
+      defaultZone: http://root:123456@${eureka.instance.hostname}:${server.port}/eureka/
+  instance:
+    prefer-ip-address: true
+#    lease-renewal-interval-in-seconds: 2
+#    lease-expiration-duration-in-seconds: 3
+    instance-id: ${spring.application.name}:${server.port}
+    hostname: localhost
+#  server:
+#    enable-self-preservation: false
+#    eviction-interval-timer-in-ms: 5000   #清理不可用节点间期为5秒，生产环境建议使用默认配置60秒，单位毫秒
