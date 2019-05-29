@@ -18,7 +18,7 @@ eureka:
 #    lease-renewal-interval-in-seconds: 2
 #    lease-expiration-duration-in-seconds: 3
     instance-id: ${spring.application.name}:${server.port}
-    hostname: localhost
+    hostname: 202.196.37.147
 #  server:
 #    enable-self-preservation: false
 #    eviction-interval-timer-in-ms: 5000   #清理不可用节点间期为5秒，生产环境建议使用默认配置60秒，单位毫秒

@@ -25,9 +25,7 @@ public class StanfordChineseNlpExample {
 
     public static void main(String[] args) {
         StanfordChineseNlpExample nlp = new StanfordChineseNlpExample();
-        Result result = nlp.runChineseAnnotators("\"袁隆平是中国科学院的院士,他于2009年10月到中国山东省东营市东营区永乐机场附近承包了一千亩盐碱地,\"\n" +
-                "                + \"开始种植棉花, 年产量达到一万吨, 哈哈, 反正棣琦说的是假的,逗你玩儿,明天下午2点来我家吃饭吧。\"\n" +
-                "                + \"棣琦是山东大学毕业的,目前在百度做java开发,位置是东北旺东路102号院,手机号14366778890\";");
+        Result result = nlp.runChineseAnnotators("我是钢铁侠。");
         System.out.println(result);
 
     }

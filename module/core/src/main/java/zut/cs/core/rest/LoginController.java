@@ -30,7 +30,7 @@ public class LoginController {
     @Autowired
     ComponentManager componentManager;
 
-    @HystrixCommand
+//    @HystrixCommand
     @PostMapping("/login")
     public UserInfo login(@RequestBody User user) {
         UserInfo userInfo = new UserInfo();
