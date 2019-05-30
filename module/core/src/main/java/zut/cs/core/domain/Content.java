@@ -1,13 +1,12 @@
 package zut.cs.core.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 import zut.cs.core.base.domain.BaseEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -30,4 +29,6 @@ public class Content extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "user_id")
     User user;
+    @OneToMany
+    List<Picture> pictures;
 }
