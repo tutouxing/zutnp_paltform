@@ -33,14 +33,14 @@ public class FileUploadController {
         this.resourceLoader = resourceLoader;
     }
 
-    @Value("${spring.servlet.multipart.location}")
-    private String path;
+  //  @Value("${spring.servlet.multipart.location}")
+    private String path="E:/images/upload";
 
     /**
      *
      * @return 跳转到文件显示页面
      */
-    @RequestMapping("/show")
+    @GetMapping("/show")
     public String show(){
         return "show";
     }
@@ -49,8 +49,7 @@ public class FileUploadController {
      * @param file 上传的文件
      * @return
      */
-    @ResponseBody
-    @RequestMapping("/fileUpload")
+    @PostMapping("/fileUpload")
     public String upload(@RequestParam("file") MultipartFile file ){
         //1定义要上传文件 的存放路径
         String localPath="E:/images/upload";

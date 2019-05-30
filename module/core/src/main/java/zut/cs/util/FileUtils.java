@@ -23,9 +23,9 @@ public class FileUtils {
     public static boolean upload(MultipartFile file, String path, String fileName){
 
         // 使用UUID生成新的文件名防止重名
-//        String realPath = path + "/" + FileNameUtils.getFileName(fileName);
+        String realPath = path + "/" + FileNameUtils.getFileName(fileName);
 //        System.out.println("realpath:"+path);
-        File dest = new File(path);
+        File dest = new File(realPath);
 
         //判断文件父目录是否存在
         if(!dest.getParentFile().exists()){
