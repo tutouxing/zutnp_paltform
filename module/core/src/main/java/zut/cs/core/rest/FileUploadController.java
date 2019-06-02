@@ -9,6 +9,7 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import zut.cs.util.FileNameUtils;
 import zut.cs.util.FileUtils;
 
 import javax.servlet.MultipartConfigElement;
@@ -55,17 +56,21 @@ public class FileUploadController {
         String localPath="E:/images/upload";
         //2获得文件名字
         String fileName=file.getOriginalFilename();
+        localPath = localPath + "/" + FileNameUtils.getFileName(fileName);
         //2上传失败提示
         String warning="";
+        String hostUrl="";
         if(FileUtils.upload(file, localPath, fileName)){
             //上传成功
             warning="上传成功";
-
+            hostUrl = "http://118.25.191.46:8080"+ localPath.substring(localPath.indexOf(":")+1);
+            return hostUrl;
         }else{
             warning="上传失败";
+            return "-1";
         }
-        System.out.println(warning);
-        return "上传成功";
+//        System.out.println(warning);
+//        return "上传成功";
     }
 
     /**
