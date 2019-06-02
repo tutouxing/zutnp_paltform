@@ -75,11 +75,13 @@ public class PictureController extends GenericController<Picture,Long, PictureMa
 //            picture.setContent(contentManager.findById(content_id));
             //后续进一步处理content中img地址
             pictureManager.save(picture);
+            return hostUrl;
         }else{
             warning="上传失败";
+            return "-1";
         }
-        System.out.println(warning);
-        return hostUrl;
+//        System.out.println(warning);
+//        return hostUrl;
     }
 
     @ApiOperation(value = "得到与内容相关的所有图片")
