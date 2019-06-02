@@ -1,11 +1,9 @@
 package zut.cs.core.service;
 
 import zut.cs.core.base.service.GenericManager;
-import zut.cs.core.domain.Channel;
 import zut.cs.core.domain.Content;
-import zut.cs.core.domain.User;
 
-import java.util.Set;
+import java.util.List;
 
 /*
     Authod：dd
@@ -13,6 +11,6 @@ import java.util.Set;
 */
 
 public interface ContentManager extends GenericManager<Content, Long> {
-    Set<Content> findByTitle(String title);
-    Set<Content> findAll(long userId,long channelId);
+    List<Content> findByTitle(String title);
+    List<Content> findAll(long userId,long channelId);
 }

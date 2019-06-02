@@ -4,7 +4,7 @@ import zut.cs.core.base.service.GenericManager;
 import zut.cs.core.domain.Content;
 import zut.cs.core.domain.Picture;
 
-import java.util.Set;
+import java.util.List;
 
 public interface PictureManager extends GenericManager<Picture,Long> {
     /**
@@ -15,5 +15,5 @@ public interface PictureManager extends GenericManager<Picture,Long> {
      * @CreateDate: 2019/5/14$ 15:29$
 
      */
-    Set<Picture> findByContent(Content content);
+//    List<Picture> findByContent(Content content);
 }
