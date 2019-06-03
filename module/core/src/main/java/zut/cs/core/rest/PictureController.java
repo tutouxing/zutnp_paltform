@@ -84,12 +84,12 @@ public class PictureController extends GenericController<Picture,Long, PictureMa
 //        return hostUrl;
     }
 
-    @ApiOperation(value = "得到与内容相关的所有图片")
-    @PostMapping("content_id/")
-    public Set<Picture> getPicturesByContent(@RequestBody Long content_id){
-        Content content = contentManager.findById(content_id);
-        return pictureManager.findByContent(content);
-    }
+//    @ApiOperation(value = "得到与内容相关的所有图片")
+//    @PostMapping("content_id/")
+//    public Set<Picture> getPicturesByContent(@RequestBody Long content_id){
+//        Content content = contentManager.findById(content_id);
+//        return pictureManager.findByContent(content);
+//    }
 
 
 
