@@ -12,7 +12,6 @@
     <artifactId>auth</artifactId>
     <modules>
         <module>auth-server</module>
-        <module>auth-client</module>
     </modules>
     <dependencies>
 

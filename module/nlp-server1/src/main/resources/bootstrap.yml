@@ -1,0 +1,20 @@
+eureka:
+  instance:
+    hostname: ${spring.application.name}
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://root:123456@202.196.37.147:18888/eureka/
+      appname: nlp
+spring:
+  application:
+    name: nlp
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server
+      fail-fast: false
+      profile: dev1
+      name: nlp
+      label: master

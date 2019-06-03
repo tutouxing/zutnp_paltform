@@ -1,17 +1,24 @@
-spring:
-  application:
-    name: zutnlp-platform-center
 server:
   port: 18888
+spring:
+  application:
+    name: center
+  security:
+    user:
+      name: root
+      password: 123456
 eureka:
   client:
     fetch-registry: false
     register-with-eureka: false
-  serviceUrl:
-    defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+    serviceUrl:
+      defaultZone: http://root:123456@${eureka.instance.hostname}:${server.port}/eureka/
   instance:
-    hostname: localhost   #本地开发
     prefer-ip-address: true
-#    hostname: 202.196.37.147  #服务器生产
-  server:
-    max-threads-for-peer-replication: 0
+#    lease-renewal-interval-in-seconds: 2
+#    lease-expiration-duration-in-seconds: 3
+    instance-id: ${spring.application.name}:${server.port}
+    hostname: 202.196.37.147
+#  server:
+#    enable-self-preservation: false
+#    eviction-interval-timer-in-ms: 5000   #清理不可用节点间期为5秒，生产环境建议使用默认配置60秒，单位毫秒

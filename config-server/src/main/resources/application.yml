@@ -1,0 +1,25 @@
+server:
+  port: 18886
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/tutouxing/config-server.git
+          username:
+          password:
+          default-label: master
+          search-paths: '{application}'
+      enabled: false
+#  security:
+#    user:
+#      name: root
+#      password: 123456
+eureka:
+  client:
+    service-url:
+      defaultZone: http://root:123456@202.196.37.147:18888/eureka/
+  instance:
+    prefer-ip-address: true
