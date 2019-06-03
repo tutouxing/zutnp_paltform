@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import zut.cs.core.service.ChannelManager;
 import zut.cs.core.service.ContentManager;
+import zut.cs.core.service.PictureManager;
 import zut.cs.core.service.UserManager;
 
 import java.util.Date;
@@ -27,6 +28,8 @@ public class ContentController extends GenericController<Content, Long, ContentM
     ChannelManager channelManager;
     @Autowired
     UserManager userManager;
+    @Autowired
+    PictureManager pictureManager;
 
     @Autowired
     public void setContentManager(ContentManager contentManager) {
@@ -53,12 +56,12 @@ public class ContentController extends GenericController<Content, Long, ContentM
     }
     @ApiOperation(value = ("通过标题查找内容(return 数组)"))
     @GetMapping("getByTitle/")
-    public Set<Content> getByTitle(String title){
+    public List<Content> getByTitle(String title){
         return contentManager.findByTitle(title);
     }
-    @ApiOperation(value = "得到当前用户和栏目下的所有内容")
+    @ApiOperation(value = "得到当前用户和栏目下的所有内容包括图片")
     @GetMapping("/list")
-    public Set<Content> getAll(long userId,long channelId){
-        return contentManager.findAll(userId,channelId);
+    public List<Content> getAll(long userId,long channelId){
+        return contentManager.findAll(userId, channelId);
     }
 }

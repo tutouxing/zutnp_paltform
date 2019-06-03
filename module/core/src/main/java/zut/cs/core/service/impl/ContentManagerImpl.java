@@ -1,17 +1,14 @@
 package zut.cs.core.service.impl;
 
-import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
 import zut.cs.core.base.service.impl.GenericManagerImpl;
 import zut.cs.core.dao.ContentDao;
-import zut.cs.core.domain.Channel;
 import zut.cs.core.domain.Content;
-import zut.cs.core.domain.User;
 import zut.cs.core.service.ContentManager;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.List;
 
 
 /*
@@ -31,12 +28,12 @@ public class ContentManagerImpl extends GenericManagerImpl<Content, Long> implem
 
     @Cacheable(value = "content")
     @Override
-    public Set<Content> findByTitle(String title) {
+    public List<Content> findByTitle(String title) {
         return contentDao.findTitleLike(title);
     }
 
     @Override
-    public Set<Content> findAll(long userId,long channelId) {
+    public List<Content> findAll(long userId,long channelId) {
         return contentDao.findAllByUser_IdAndChannel_Id(userId,channelId);
     }
 }

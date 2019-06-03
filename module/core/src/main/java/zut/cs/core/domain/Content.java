@@ -6,6 +6,7 @@ import lombok.Setter;
 import zut.cs.core.base.domain.BaseEntity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
