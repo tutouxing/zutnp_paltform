@@ -4,11 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import zut.cs.core.base.service.impl.GenericManagerImpl;
 import zut.cs.core.dao.PictureDao;
-import zut.cs.core.domain.Content;
 import zut.cs.core.domain.Picture;
 import zut.cs.core.service.PictureManager;
-
-import java.util.List;
 
 @Service
 public class PictureManagerImpl extends GenericManagerImpl<Picture,Long> implements PictureManager {
@@ -25,6 +22,11 @@ public class PictureManagerImpl extends GenericManagerImpl<Picture,Long> impleme
     public void setPictureDao(PictureDao pictureDao){
         this.pictureDao = pictureDao;
         this.dao = this.pictureDao;
+    }
+
+    @Override
+    public Picture findByUrl(String url) {
+        return pictureDao.findByUrl(url);
     }
 
 //    @Override

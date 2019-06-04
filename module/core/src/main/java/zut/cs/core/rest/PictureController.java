@@ -15,6 +15,8 @@ import zut.cs.core.service.PictureManager;
 import zut.cs.util.FileNameUtils;
 import zut.cs.util.FileUtils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -46,12 +48,12 @@ public class PictureController extends GenericController<Picture,Long, PictureMa
         this.resourceLoader = resourceLoader;
     }
 
-    @Value("${spring.servlet.multipart.location}")
+//    @Value("${spring.servlet.multipart.location}")
     private String path;
 
     @ResponseBody
     @RequestMapping("/fileUpload")
-    public String upload(@RequestParam("file") MultipartFile file){
+    public List upload(@RequestParam("file") MultipartFile file){
         //1定义要上传文件 的存放路径
         String localPath="E:/images/upload";
         //2获得文件名字
@@ -75,10 +77,12 @@ public class PictureController extends GenericController<Picture,Long, PictureMa
 //            picture.setContent(contentManager.findById(content_id));
             //后续进一步处理content中img地址
             pictureManager.save(picture);
-            return hostUrl;
+            List<Picture> newPicture = new ArrayList<>();
+            newPicture.add(pictureManager.findByUrl(hostUrl));
+            return newPicture;
         }else{
             warning="上传失败";
-            return "-1";
+            return null;
         }
 //        System.out.println(warning);
 //        return hostUrl;

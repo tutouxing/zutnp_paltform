@@ -16,5 +16,6 @@ public interface PictureDao extends GenericDao<Picture,Long> {
 
      */
 //    List<Picture> findByContent(Content content);
+    Picture findByUrl(String url);
 
 }
