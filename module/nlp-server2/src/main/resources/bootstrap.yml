@@ -4,7 +4,7 @@ eureka:
     prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://root:123456@202.196.37.147:18888/eureka/
+      defaultZone: http://root:123456@127.0.0.1:18888/eureka/
       appname: nlp
 spring:
   application:
@@ -15,6 +15,6 @@ spring:
         enabled: true
         service-id: config-server
       fail-fast: false
-      profile: dev2
+      profile: dev20
       name: nlp
       label: master

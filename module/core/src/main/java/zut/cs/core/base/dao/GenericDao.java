@@ -14,12 +14,8 @@ import java.io.Serializable;
  * Extend this interface if you want type safe (no casting necessary) DAO's for
  * your dao objects.
  *
- * @param <T>
- *            a type variable, Entity
- *
- * @param <PK>
- *            the primary key for that type，Entity Id
- *
+ * @param <T>  a type variable, Entity
+ * @param <PK> the primary key for that type，Entity Id
  */
 @NoRepositoryBean
 public interface GenericDao<T extends BaseEntity, PK extends Serializable>

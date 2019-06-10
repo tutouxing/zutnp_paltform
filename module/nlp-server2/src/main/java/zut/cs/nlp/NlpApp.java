@@ -11,7 +11,7 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
 import org.springframework.cloud.netflix.turbine.EnableTurbine;
 
 @EnableSwagger2Doc
-@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
+@SpringBootApplication
 @EnableEurekaClient
 @EnableHystrix
 @EnableHystrixDashboard

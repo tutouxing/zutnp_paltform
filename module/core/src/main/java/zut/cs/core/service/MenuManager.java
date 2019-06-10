@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface MenuManager extends GenericTreeManager<Menu, Long> {
     //返回所有菜单（parent_id=null）
-    public List<Menu> findAllMneus();
+    List<Menu> findAllMneus();
 }

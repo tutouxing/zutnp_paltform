@@ -13,14 +13,12 @@ import java.util.List;
  * Extend this interface if you want type safe (no casting necessary) DAO's for
  * your dao objects.
  *
- * @param <T>
- *            a type variable,实体类型
- * @param <PK>
- *            the primary key for that type，实体类Id
+ * @param <T>  a type variable,实体类型
+ * @param <PK> the primary key for that type，实体类Id
  * @author <a href="mailto:ming616@gmail.com">Liu Xiaoming</a>
  */
 @NoRepositoryBean
 public abstract interface GenericTreeDao<T extends BaseTreeEntity<T>, PK extends Serializable>
-		extends GenericDao<T, PK> {
-	List<T> getRoot();
+        extends GenericDao<T, PK> {
+    List<T> getRoot();
 }

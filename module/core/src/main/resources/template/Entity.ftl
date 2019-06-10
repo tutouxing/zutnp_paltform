@@ -41,19 +41,19 @@ public class ${tableName} <#if TableType=="ALONE">extends BaseEntity <#else > ex
             return ${tableLowName}Name;
          }
 
-     <#list propsMapList as prop>
+<#list propsMapList as prop>
           @Column(  name = "${prop.propsName}" ,nullable=${prop.propsIsNull?c},unique = ${prop.propsIsUnique?c},length = ${prop.propsLong})
           private ${prop.propsType} ${prop.propsLowName};
 
-     </#list>
-    <#list propsMapList as prop>
+</#list>
+<#list propsMapList as prop>
 
      public void set${prop.propsName} ( ${prop.propsType} ${prop.propsLowName}) { this.${prop.propsLowName} = ${prop.propsLowName}; }
      public ${prop.propsType} get${prop.propsName}() {return ${prop.propsLowName};}
-    </#list>
+</#list>
 
-    <#list ConnectionMapList as connection>
-        <#if connection.ConnectionTableConnectionType=="OneToMany">
+<#list ConnectionMapList as connection>
+    <#if connection.ConnectionTableConnectionType=="OneToMany">
         @Fetch(FetchMode.SELECT)
         @OneToMany(mappedBy = "${tableLowName}", <#if connection.ConnectionPropsCaseCadeType??> cascade ={${connection.ConnectionPropsCaseCadeType}}, </#if>  fetch = FetchType.EAGER)
         @JsonIgnore
@@ -66,8 +66,8 @@ public class ${tableName} <#if TableType=="ALONE">extends BaseEntity <#else > ex
         public void set${connection.ConnectionSonTableName}s(List<${connection.ConnectionSonTableName}> ${connection.ConnectionLowSonTableName}s) {
             this.${connection.ConnectionLowSonTableName}s = ${connection.ConnectionLowSonTableName}s;
         }
-        </#if>
-        <#if connection.ConnectionTableConnectionType=="ManyToOne">
+    </#if>
+    <#if connection.ConnectionTableConnectionType=="ManyToOne">
         @ManyToOne(<#if connection.ConnectionPropsCaseCadeType??> cascade ={${connection.ConnectionPropsCaseCadeType}},</#if> optional = true,fetch =FetchType.LAZY)
         private ${connection.ConnectionParentTableName} ${connection.ConnectionLowParentTableName};
 
@@ -79,12 +79,12 @@ public class ${tableName} <#if TableType=="ALONE">extends BaseEntity <#else > ex
         public void set${connection.ConnectionParentTableName}(${connection.ConnectionParentTableName} ${connection.ConnectionLowParentTableName}) {
             this.${connection.ConnectionLowParentTableName} = ${connection.ConnectionLowParentTableName};
         }
-        </#if>
-        <#if connection.ConnectionTableConnectionType=="ManyToMany"&&connection.ConnectionTableConnectionPropsOneOrTwo==true>
-        <#--执行了父是维护端，子是被维护端，需要加如果是persist，
-        <#--manytomany的单表的被维护端，如果加关系，是在维护段新建的关系，然后呢就会是
-        <#--@JoinTable，而没有mappedBy，然后如果建立父关系，就一定会有为1
-        -----------主控方-->
+    </#if>
+    <#if connection.ConnectionTableConnectionType=="ManyToMany"&&connection.ConnectionTableConnectionPropsOneOrTwo==true>
+    <#--执行了父是维护端，子是被维护端，需要加如果是persist，
+    <#--manytomany的单表的被维护端，如果加关系，是在维护段新建的关系，然后呢就会是
+    <#--@JoinTable，而没有mappedBy，然后如果建立父关系，就一定会有为1
+    -----------主控方-->
         @ManyToMany(fetch = FetchType.EAGER,<#if connection.ConnectionPropsCaseCadeType??> cascade ={${connection.ConnectionPropsCaseCadeType}} </#if>)
         @JoinTable()
         @JsonIgnore
@@ -93,17 +93,17 @@ public class ${tableName} <#if TableType=="ALONE">extends BaseEntity <#else > ex
         public List<${connection.ConnectionSonTableName}> get${connection.ConnectionSonTableName}s() { return ${connection.ConnectionLowSonTableName}s; }
 
         public void set${connection.ConnectionSonTableName}s(List<${connection.ConnectionSonTableName}> ${connection.ConnectionLowSonTableName}s) { this.${connection.ConnectionLowSonTableName}s = ${connection.ConnectionLowSonTableName}s; }
-        </#if>
+    </#if>
 
-        <#if connection.ConnectionTableConnectionType=="ManyToMany"&&connection.ConnectionTableConnectionPropsOneOrTwo==false>
+    <#if connection.ConnectionTableConnectionType=="ManyToMany"&&connection.ConnectionTableConnectionPropsOneOrTwo==false>
             @ManyToMany(fetch = FetchType.EAGER,<#--<#if connection.ConnectionPropsCaseCadeType??> cascade ={${connection.ConnectionPropsCaseCadeType}},</#if>-->mappedBy="${tableLowName}s")
             @JsonIgnore
             private List<${connection.ConnectionParentTableName}> ${connection.ConnectionLowParentTableName}s;
             public List<${connection.ConnectionParentTableName}> get${connection.ConnectionParentTableName}s() {return ${connection.ConnectionLowParentTableName}s;}
             public void set${connection.ConnectionParentTableName}s(List<${connection.ConnectionParentTableName}> ${connection.ConnectionLowParentTableName}s) { this.${connection.ConnectionLowParentTableName}s = ${connection.ConnectionLowParentTableName}s; }
-        </#if>
+    </#if>
 
-        <#if connection.ConnectionTableConnectionType=="OneToOne"&&connection.ConnectionTableConnectionPropsOneOrTwo==true>
+    <#if connection.ConnectionTableConnectionType=="OneToOne"&&connection.ConnectionTableConnectionPropsOneOrTwo==true>
         //执行了子one
         @OneToOne(<#if connection.ConnectionPropsCaseCadeType??> cascade ={${connection.ConnectionPropsCaseCadeType}}</#if>)
         private ${connection.ConnectionSonTableName} ${connection.ConnectionLowSonTableName};
@@ -115,9 +115,9 @@ public class ${tableName} <#if TableType=="ALONE">extends BaseEntity <#else > ex
         public void set${connection.ConnectionSonTableName}(${connection.ConnectionSonTableName} ${connection.ConnectionLowSonTableName}) {
             this.${connection.ConnectionLowSonTableName} = ${connection.ConnectionLowSonTableName};
         }
-        </#if>
+    </#if>
 
-        <#if connection.ConnectionTableConnectionType=="OneToOne"&&connection.ConnectionTableConnectionPropsOneOrTwo==false>
+    <#if connection.ConnectionTableConnectionType=="OneToOne"&&connection.ConnectionTableConnectionPropsOneOrTwo==false>
         //执行了父one
         @OneToOne(<#if connection.ConnectionPropsCaseCadeType??> cascade ={${connection.ConnectionPropsCaseCadeType}} </#if>)
         private ${connection.ConnectionParentTableName} ${connection.ConnectionLowParentTableName};
@@ -129,8 +129,8 @@ public class ${tableName} <#if TableType=="ALONE">extends BaseEntity <#else > ex
         public void set${connection.ConnectionParentTableName}(${connection.ConnectionParentTableName} ${connection.ConnectionLowParentTableName}) {
             this.${connection.ConnectionLowParentTableName} = ${connection.ConnectionLowParentTableName};
         }
-        </#if>
-    </#list>
+    </#if>
+</#list>
 
 
 

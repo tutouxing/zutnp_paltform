@@ -24,15 +24,15 @@ public class StanfordEnglishNlp {
     private En2Ch en2Ch = new En2Ch();
 
     public Result runAllAnnotators(String text) {
-            // creates a StanfordCoreNLP object, with POS tagging, lemmatization, NER, parsing, and coreference resolution
-            Properties props = new Properties();
-            props.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref");
-            StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
-            // create an empty Annotation just with the given text
-            Annotation document = new Annotation(text);
-            // run all Annotators on this text
-            pipeline.annotate(document);
-            return parserOutput(document);
+        // creates a StanfordCoreNLP object, with POS tagging, lemmatization, NER, parsing, and coreference resolution
+        Properties props = new Properties();
+        props.setProperty("annotators", "tokenize, ssplit, pos, lemma, ner, parse, dcoref");
+        StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+        // create an empty Annotation just with the given text
+        Annotation document = new Annotation(text);
+        // run all Annotators on this text
+        pipeline.annotate(document);
+        return parserOutput(document);
     }
 
     public Result parserOutput(Annotation document) {

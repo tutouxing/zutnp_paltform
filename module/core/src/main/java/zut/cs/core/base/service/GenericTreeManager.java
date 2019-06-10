@@ -15,7 +15,6 @@ import java.util.List;
  *
  * @param <T>  a type variable
  * @param <PK> the primary key for that type
- * @author <a href="mailto:ming616@gmail.com">Liu Xiaoming</a>
  */
 @SuppressWarnings("rawtypes")
 public interface GenericTreeManager<T extends BaseTreeEntity, PK extends Serializable> extends GenericManager<T, PK> {
@@ -52,6 +51,7 @@ public interface GenericTreeManager<T extends BaseTreeEntity, PK extends Seriali
     public List<T> getRoot();
 
     public void addChild(PK id, T t);
+
     public void updateChild(PK id, T t);
 
 

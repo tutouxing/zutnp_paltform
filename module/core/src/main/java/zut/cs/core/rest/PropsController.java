@@ -14,58 +14,59 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/Pros")
-public class PropsController extends GenericController<Props,Long,PropsManager> {
+public class PropsController extends GenericController<Props, Long, PropsManager> {
     PropsManager propsManager;
 
     @Autowired
     public void setPropsManager(PropsManager propsManager) {
         this.propsManager = propsManager;
-        this.manager=this.propsManager;
+        this.manager = this.propsManager;
     }
+
     @Autowired
     TableMessageManager tableMessageManager;
 
     @RequestMapping(value = "/list")
     @ResponseBody
-    public List<Props> list(){
-        List<Props> propsList=new ArrayList<Props>();
-        propsList=this.propsManager.findAll();
+    public List<Props> list() {
+        List<Props> propsList = new ArrayList<Props>();
+        propsList = this.propsManager.findAll();
         return propsList;
     }
 
-    @PostMapping(value = "/add",consumes = {"application/json"},produces = {"application/json"})
+    @PostMapping(value = "/add", consumes = {"application/json"}, produces = {"application/json"})
     @ResponseBody
     public Boolean add(@RequestBody Props props,
-            @RequestParam("TableMessageName") String TableMessageName){
-        TableMessage tableMessage=this.tableMessageManager.findByTableName(TableMessageName);
-        if (tableMessage!=null){
+                       @RequestParam("TableMessageName") String TableMessageName) {
+        TableMessage tableMessage = this.tableMessageManager.findByTableName(TableMessageName);
+        if (tableMessage != null) {
             props.setTableMessage(tableMessage);
             this.propsManager.save(props);
-        }else {
+        } else {
             System.out.println(",表为空，不能建立属性在找到之后返回空");
             return false;
         }
-        if(this.propsManager.findByPropsName(props.getPrtysName())!=null) {
+        if (this.propsManager.findByPropsName(props.getPrtysName()) != null) {
             return true;
         }
         return false;
     }
 
-    @PostMapping(value = "/addList",consumes = {"application/json"},produces = {"application/json"})
+    @PostMapping(value = "/addList", consumes = {"application/json"}, produces = {"application/json"})
     @ResponseBody
     public Boolean add(@RequestBody List<Props> props,
-                       @RequestParam("TableMessageName") String TableMessageName){
-        TableMessage tableMessage=this.tableMessageManager.findByTableName(TableMessageName);
-        if (tableMessage!=null){
-            for(int i=0;i<props.size();i++){
-                if (this.propsManager.findByPropsName(props.get(i).getPrtysName())!=null){
+                       @RequestParam("TableMessageName") String TableMessageName) {
+        TableMessage tableMessage = this.tableMessageManager.findByTableName(TableMessageName);
+        if (tableMessage != null) {
+            for (int i = 0; i < props.size(); i++) {
+                if (this.propsManager.findByPropsName(props.get(i).getPrtysName()) != null) {
                     System.out.println("在一处返回");
                     return false;
                 }
                 props.get(i).setTableMessage(tableMessage);
                 this.propsManager.save(props.get(i));
             }
-        }else {
+        } else {
             System.out.println(",表为空，不能建立属性在找到之后返回空");
             return false;
         }
@@ -74,14 +75,14 @@ public class PropsController extends GenericController<Props,Long,PropsManager> 
 
     @ResponseBody
     @PostMapping(value = "/delete")
-    public boolean delete(@RequestParam("PropsName") String PropsName){
+    public boolean delete(@RequestParam("PropsName") String PropsName) {
 
-        if (this.propsManager.findByPropsName(PropsName)==null){
+        if (this.propsManager.findByPropsName(PropsName) == null) {
             return false;
-        }else {
-            Long id=this.propsManager.findByPropsName(PropsName).getId();
+        } else {
+            Long id = this.propsManager.findByPropsName(PropsName).getId();
             this.propsManager.delete(id);
-            if((this.propsManager.findByPropsName(PropsName)==null)==true){
+            if ((this.propsManager.findByPropsName(PropsName) == null) == true) {
                 return true;
             }
         }
@@ -89,13 +90,12 @@ public class PropsController extends GenericController<Props,Long,PropsManager> 
     }
 
     @ResponseBody
-    @PostMapping(value = "/updata",consumes = "application/json")
+    @PostMapping(value = "/updata", consumes = "application/json")
     public boolean updata(@RequestBody Props props,
-                            @RequestParam("PropsName")String PropsName){
-        if(this.propsManager.findByPropsName(PropsName)==null)
-        {
+                          @RequestParam("PropsName") String PropsName) {
+        if (this.propsManager.findByPropsName(PropsName) == null) {
             return false;
-        }else {
+        } else {
             this.propsManager.updata(props);
             return true;
         }
@@ -103,8 +103,8 @@ public class PropsController extends GenericController<Props,Long,PropsManager> 
 
     @ResponseBody
     @PostMapping(value = "/check/{PropsName}")
-    public Props findProps(@PathVariable @RequestParam("PropsName") String PropsName){
-        if(this.propsManager.findByPropsName(PropsName)!=null){
+    public Props findProps(@PathVariable @RequestParam("PropsName") String PropsName) {
+        if (this.propsManager.findByPropsName(PropsName) != null) {
             return this.propsManager.findByPropsName(PropsName);
         }
         return null;

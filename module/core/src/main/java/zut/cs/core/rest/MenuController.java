@@ -16,19 +16,21 @@ import java.util.List;
 @RestController
 @RequestMapping("menu")
 @Api(tags = "菜单接口")
-public class MenuController extends GenericTreeController<Menu,Long,MenuManager> {
+public class MenuController extends GenericTreeController<Menu, Long, MenuManager> {
     @Autowired
     ElementManager elementManager;
     MenuManager menuManager;
+
     @Autowired
-    public void  setMenuManager(MenuManager menuManager){
-        this.menuManager=menuManager;
-        this.treeManager=this.menuManager;
-        this.manager=this.treeManager;
+    public void setMenuManager(MenuManager menuManager) {
+        this.menuManager = menuManager;
+        this.treeManager = this.menuManager;
+        this.manager = this.treeManager;
     }
+
     @ApiOperation(value = "得到所有菜单")
     @GetMapping("list")
-    public List<Menu> getAll(){
+    public List<Menu> getAll() {
         return menuManager.findAllMneus();
     }
 }

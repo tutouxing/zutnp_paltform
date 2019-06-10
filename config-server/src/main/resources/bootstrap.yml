@@ -20,6 +20,8 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://root:123456@202.196.37.147:18888/eureka/
+      defaultZone: http://root:123456@127.0.0.1:18888/eureka/
   instance:
     prefer-ip-address: true
+encrypt:
+  key: Ironman

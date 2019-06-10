@@ -6,7 +6,7 @@ import zut.cs.core.domain.Picture;
 
 import java.util.List;
 
-public interface PictureDao extends GenericDao<Picture,Long> {
+public interface PictureDao extends GenericDao<Picture, Long> {
     /**
      * @Description: java类作用描述
 

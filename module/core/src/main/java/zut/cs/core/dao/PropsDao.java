@@ -7,7 +7,7 @@ import zut.cs.core.base.dao.GenericDao;
 import zut.cs.core.domain.Props;
 
 @Repository
-public interface PropsDao extends GenericDao<Props,Long> {
+public interface PropsDao extends GenericDao<Props, Long> {
     @Query("select o from Props o  where o.prtysName=?1")
     public Props findByProps_name(@Param("prtysName") String prtysName);
 

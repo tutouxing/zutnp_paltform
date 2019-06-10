@@ -20,21 +20,21 @@ public class CreateWebCode {
     private String templatenamehtml="webhtml.ftl";
     private String templatenamevue="webvue.ftl";*/
 
-    public void codehtml(String path,String filehtmlName,String templatepath,String templatenamehtml ) throws IOException{
+    public void codehtml(String path, String filehtmlName, String templatepath, String templatenamehtml) throws IOException {
         Map<String, Object> map = new HashMap<String, Object>();
         new File(path).mkdirs();
-        File nFile = new File(path +"/"+ filehtmlName);//新建一个文件
+        File nFile = new File(path + "/" + filehtmlName);//新建一个文件
 
         if (nFile.exists()) {
             System.out.println("文件建立成功");
-            throw new RuntimeException("File \'"+filehtmlName+"\' already exists");
+            throw new RuntimeException("File \'" + filehtmlName + "\' already exists");
         }
         Writer writer = null;
         try {
             writer = new FileWriter(nFile);//吧生成的模板内容写入文件
             Template template = getConfiguration(templatepath).getTemplate(templatenamehtml, "UTF-8");
             template.process(map, writer);
-        }catch (TemplateException e) {
+        } catch (TemplateException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -42,6 +42,7 @@ public class CreateWebCode {
             writer.close();
         }
     }
+
     private static Configuration getConfiguration(String templateDirectory) {
 
         Configuration configuration = new Configuration(Configuration.VERSION_2_3_22);

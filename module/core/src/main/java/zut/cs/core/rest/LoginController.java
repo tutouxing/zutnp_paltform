@@ -1,13 +1,18 @@
 package zut.cs.core.rest;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import io.swagger.annotations.Api;
-import zut.cs.core.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import zut.cs.core.service.*;
+import zut.cs.core.domain.Channel;
+import zut.cs.core.domain.Component;
+import zut.cs.core.domain.Group;
+import zut.cs.core.domain.User;
+import zut.cs.core.service.ChannelManager;
+import zut.cs.core.service.ComponentManager;
+import zut.cs.core.service.GroupManager;
+import zut.cs.core.service.UserManager;
 
 import java.util.List;
 import java.util.Set;
@@ -30,7 +35,6 @@ public class LoginController {
     @Autowired
     ComponentManager componentManager;
 
-//    @HystrixCommand
     @PostMapping("/login")
     public UserInfo login(@RequestBody User user) {
         UserInfo userInfo = new UserInfo();
@@ -39,7 +43,7 @@ public class LoginController {
             //如果用户未分配组，进行分配至基础组(基本权限)
             if (user1.getGroup() == null) {
                 Set<Channel> channels = channelManager.findUsers(user1);
-                List<Component> components=componentManager.findByUser(user1);
+                List<Component> components = componentManager.findByUser(user1);
                 Group group = groupManager.findById(Long.valueOf(5));
                 user1.setGroup(group);
                 userManager.save(user1);
@@ -54,7 +58,7 @@ public class LoginController {
                 return userInfo;
             } else {
                 Set<Channel> channels = channelManager.findUsers(user1);
-                List<Component> components=componentManager.findByUser(user1);
+                List<Component> components = componentManager.findByUser(user1);
                 Group group = user1.getGroup();
                 group.setTheme(user1.getTheme());
                 group.setPage1(user1.getPage1());

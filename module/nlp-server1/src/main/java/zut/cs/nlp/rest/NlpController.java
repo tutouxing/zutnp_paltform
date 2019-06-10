@@ -3,7 +3,6 @@ package zut.cs.nlp.rest;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import zut.cs.nlp.bean.Result;
 import zut.cs.nlp.example.StanfordChineseNlpExample;

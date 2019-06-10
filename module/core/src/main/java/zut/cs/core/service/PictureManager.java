@@ -6,7 +6,7 @@ import zut.cs.core.domain.Picture;
 
 import java.util.List;
 
-public interface PictureManager extends GenericManager<Picture,Long> {
+public interface PictureManager extends GenericManager<Picture, Long> {
     /**
      * @Description: java类作用描述
 

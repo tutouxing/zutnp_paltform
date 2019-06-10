@@ -24,20 +24,20 @@ public class TableMessageManagerImpl extends GenericTreeManagerImpl<TableMessage
 
     @Override
     public TableMessage findByTableName(String TableName) {
-        return  this.tableMessageDao.findByTableName(TableName);
+        return this.tableMessageDao.findByTableName(TableName);
     }
 
     @Override
     public List<Props> findAllprops(String TableName) {
-        TableMessage tableMessage=this.tableMessageDao.findByTableName(TableName);
-        List<Props> propsList=tableMessage.getProps();
+        TableMessage tableMessage = this.tableMessageDao.findByTableName(TableName);
+        List<Props> propsList = tableMessage.getProps();
         return propsList;
     }
 
     @Override
     public List<Connection> findAllConnections(String TableName) {
-        TableMessage tableMessage=this.tableMessageDao.findByTableName(TableName);
-        List<Connection> connectionList=tableMessage.getConnections();
+        TableMessage tableMessage = this.tableMessageDao.findByTableName(TableName);
+        List<Connection> connectionList = tableMessage.getConnections();
         return connectionList;
     }
 

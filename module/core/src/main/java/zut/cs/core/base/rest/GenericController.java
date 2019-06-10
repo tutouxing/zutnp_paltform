@@ -2,6 +2,8 @@ package zut.cs.core.base.rest;
 
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -9,17 +11,15 @@ import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 import zut.cs.core.base.domain.BaseEntity;
 import zut.cs.core.base.service.GenericManager;
-import zut.cs.util.UpdateUtil;
+import zut.cs.core.util.UpdateUtil;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
-import java.util.List;
 
 @RestController
-public abstract class GenericController<T extends BaseEntity, PK extends Serializable, M extends GenericManager<T,PK>>
-{
+public abstract class GenericController<T extends BaseEntity, PK extends Serializable, M extends GenericManager<T, PK>> {
     protected PK id;
     protected M manager;
     protected T model;
@@ -57,9 +57,9 @@ public abstract class GenericController<T extends BaseEntity, PK extends Seriali
     /**
      * 根据输入，返回分页结果中的当前页，包括当前页信息和其中的实体对象集合
      *
+     * @return
      * @paramrequest
      * @paramresponse
-     * @return
      */
     @ApiOperation(value = "得到分页列表")
     @GetMapping(value = "/")
@@ -71,7 +71,7 @@ public abstract class GenericController<T extends BaseEntity, PK extends Seriali
         if (StringUtils.isNotBlank(pageSize)) {
             this.pageSize = Integer.valueOf(pageSize);
         }
-        this.pageable=new PageRequest(this.pageNumber,this.pageSize,Sort.Direction.ASC,"id");
+        this.pageable = new PageRequest(this.pageNumber, this.pageSize, Sort.Direction.ASC, "id");
         this.page = this.manager.findAll(this.pageable);
         return this.page;
     }
@@ -92,7 +92,7 @@ public abstract class GenericController<T extends BaseEntity, PK extends Seriali
      * @param model
      * @return
      */
-    @ApiOperation(value ="通过ID修改实体")
+    @ApiOperation(value = "通过ID修改实体")
     @PutMapping("/{id}")
     public T update(@PathVariable PK id, @RequestBody T model) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 //        model.setId(Long.valueOf(id.toString()));

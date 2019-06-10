@@ -7,6 +7,6 @@ import zut.cs.core.domain.User;
 
 import java.util.List;
 
-public interface ComponentDao extends GenericDao<Component,Long> {
+public interface ComponentDao extends GenericDao<Component, Long> {
     List<Component> findByUser(User user);
 }

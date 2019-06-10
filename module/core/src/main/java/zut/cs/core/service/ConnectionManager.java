@@ -10,5 +10,6 @@ import zut.cs.core.domain.Connection;
 
 public interface ConnectionManager extends GenericManager<Connection, Long> {
     Connection findByConnectionName(String ConnectionName);
+
     Boolean updata(Connection connection);
 }

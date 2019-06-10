@@ -46,7 +46,7 @@ public class GroupManagerImpl extends GenericTreeManagerImpl<Group, Long> implem
      * @para usersId
      * @description: 将usersId添加到group
      */
-    @CachePut(value = "users")
+//    @CachePut(value = "group",key = "#groupId")
     public void addUsers(String groupId, List<String> usersId) {
         Group group = groupDao.getOne(Long.valueOf(groupId));
         for (String userId : usersId) {
@@ -59,7 +59,7 @@ public class GroupManagerImpl extends GenericTreeManagerImpl<Group, Long> implem
      * @para groupId
      * @description: 通过groupId查找其下所有用户
      */
-    @Cacheable(value = "user")
+//    @Cacheable(value = "group",key = "groupId")
     public Set<User> getUsers(String groupId) {
         Group group = groupDao.getOne(Long.valueOf(groupId));
         return userDao.findByGroup(group);
@@ -70,7 +70,7 @@ public class GroupManagerImpl extends GenericTreeManagerImpl<Group, Long> implem
      * @para usersId
      * @description: 移除该组下的users
      */
-    @CacheEvict(value = "user")
+//    @CacheEvict(value = "group",key = "#usersId")
     @Override
     public void removeUsers(List<String> usersId) {
         for (String userId : usersId) {
@@ -79,7 +79,7 @@ public class GroupManagerImpl extends GenericTreeManagerImpl<Group, Long> implem
         }
     }
 
-    @CachePut
+//    @CachePut(value = "group",key = "#groupId.concat(#menusId)")
     @Override
     public void addMenus(String groupId, List<String> menusId) {
         Group group = groupDao.getOne(Long.valueOf(groupId));
@@ -91,21 +91,21 @@ public class GroupManagerImpl extends GenericTreeManagerImpl<Group, Long> implem
         group.setMenus(menus);
     }
 
-    @Cacheable
+//    @Cacheable(value = "group",key = "groupId")
     @Override
     public Set<Menu> getMenus(String groupId) {
         Group group = groupDao.getOne(Long.valueOf(groupId));
         return group.getMenus();
     }
 
-    @CachePut
+//    @CachePut(value = "group",key = "#groupId.concat(#menusId)")
     @Override
     public void updateMenus(String grouId, List<String> menusId) {
         addMenus(grouId, menusId);
     }
 
 
-    @Cacheable
+//    @Cacheable(value = "groups")
     public List<Group> getAllGroup() {
         return groupDao.findGroupsByParentIsNull();
     }

@@ -12,7 +12,7 @@ import zut.cs.core.service.ConnectionManager;
 
 */
 @Service
-public class ConnectionManagerImpl  extends GenericManagerImpl<Connection, Long> implements ConnectionManager {
+public class ConnectionManagerImpl extends GenericManagerImpl<Connection, Long> implements ConnectionManager {
 
     ConnectionDao connectionDao;
 
@@ -21,15 +21,16 @@ public class ConnectionManagerImpl  extends GenericManagerImpl<Connection, Long>
         this.connectionDao = connectionDao;
         this.dao = this.connectionDao;
     }
+
     @Override
     public Connection findByConnectionName(String ConnectionName) {
-    Connection connection=this.connectionDao.findByConnection_name(ConnectionName);
+        Connection connection = this.connectionDao.findByConnection_name(ConnectionName);
         return connection;
     }
 
     @Override
     public Boolean updata(Connection connection) {
-        this. connectionDao.save( connection);
+        this.connectionDao.save(connection);
         return true;
     }
 }

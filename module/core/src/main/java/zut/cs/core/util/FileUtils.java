@@ -1,4 +1,4 @@
-package zut.cs.util;
+package zut.cs.core.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,16 +11,13 @@ import java.io.IOException;
 public class FileUtils {
     /**
      * @Description: java类作用描述
-
      * @Author: wastelands
-
      * @CreateDate: 2019/5/21$ 15:07$
-
      */
 
-    PictureManager pictureManager ;
+    PictureManager pictureManager;
 
-    public static boolean upload(MultipartFile file, String path, String fileName){
+    public static boolean upload(MultipartFile file, String path, String fileName) {
 
         // 使用UUID生成新的文件名防止重名
 //        String realPath = path + "/" + FileNameUtils.getFileName(fileName);
@@ -28,7 +25,7 @@ public class FileUtils {
         File dest = new File(path);
 
         //判断文件父目录是否存在
-        if(!dest.getParentFile().exists()){
+        if (!dest.getParentFile().exists()) {
             dest.getParentFile().mkdir();
         }
 
@@ -46,11 +43,11 @@ public class FileUtils {
 
     }
 
-    public static boolean saveUploadFile(String path){
+    public static boolean saveUploadFile(String path) {
 
         Picture picture = new Picture();
-        String hostUrl = "http://118.25.191.46:8080"+path.substring(path.indexOf(":")+1);
-        System.out.println(path.substring(path.indexOf(":")+1));
+        String hostUrl = "http://118.25.191.46:8080" + path.substring(path.indexOf(":") + 1);
+        System.out.println(path.substring(path.indexOf(":") + 1));
         picture.setUrl(hostUrl);
 //        pictureManager.save(picture);
         return true;

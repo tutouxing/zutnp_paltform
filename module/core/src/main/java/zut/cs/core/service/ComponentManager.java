@@ -6,6 +6,6 @@ import zut.cs.core.domain.User;
 
 import java.util.List;
 
-public interface ComponentManager extends GenericManager<Component,Long> {
+public interface ComponentManager extends GenericManager<Component, Long> {
     List<Component> findByUser(User user);
 }
