@@ -169,7 +169,7 @@
             },
             tablelist() {
                 let that = this;
-                let url = "http://127.0.0.1:8848/TableMessage/list";
+                let url = "http://202.196.37.147:8848/TableMessage/list";
                 that.$axios.get(url, {}).then(function (response) {
                     for (let j = 0; j < response.data.length; j++) {
                         let yuan = response.data[j].tablename;
@@ -197,7 +197,7 @@
                     {
                         that.$axios({
                             method: 'post',
-                            url: 'http://127.0.0.1:8848/TableMessage/findMyProps',
+                            url: 'http://202.196.37.147:8848/TableMessage/findMyProps',
                             headers: {
                                 'Content-Type': 'application/json'
                             },

@@ -24,7 +24,7 @@ public class GenericFilter implements Filter {
         // 这里填写你允许进行跨域的主机ip（正式上线时可以动态配置具体允许的域名和IP）
         rep.setHeader("Access-Control-Allow-Credentials", "true");
         rep.setHeader("Access-Control-Allow-Origin", "*");
-//        rep.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:8845");
+//        rep.setHeader("Access-Control-Allow-Origin", "http://202.196.37.147:8845");
         //        // 允许的访问方法
         rep.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE, PATCH");
         // Access-Control-Max-Age 用于 CORS 相关配置的缓存
