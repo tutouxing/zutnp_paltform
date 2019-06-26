@@ -17,7 +17,7 @@ public class GenericFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,
-                         FilterChain filterChain) throws ServletException,IOException {
+                         FilterChain filterChain) throws ServletException, IOException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse rep = (HttpServletResponse) servletResponse;
         //设置允许跨域的配置
@@ -26,7 +26,7 @@ public class GenericFilter implements Filter {
         rep.setHeader("Access-Control-Allow-Origin", "*");
 //        rep.setHeader("Access-Control-Allow-Origin", "http://202.196.37.147:8845");
         //        // 允许的访问方法
-        rep.setHeader("Access-Control-Allow-Methods","POST, GET, PUT, OPTIONS, DELETE, PATCH");
+        rep.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE, PATCH");
         // Access-Control-Max-Age 用于 CORS 相关配置的缓存
         rep.setHeader("Access-Control-Max-Age", "3600");
         rep.setHeader("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");

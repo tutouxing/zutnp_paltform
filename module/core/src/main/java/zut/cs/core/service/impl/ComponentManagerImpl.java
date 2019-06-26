@@ -11,12 +11,13 @@ import zut.cs.core.service.ComponentManager;
 import java.util.List;
 
 @Service
-public class ComponentManagerImpl extends GenericManagerImpl<Component,Long> implements ComponentManager {
+public class ComponentManagerImpl extends GenericManagerImpl<Component, Long> implements ComponentManager {
     ComponentDao componentDao;
+
     @Autowired
-    public void setComponentDao(ComponentDao componentDao){
-        this.componentDao=componentDao;
-        this.dao=this.componentDao;
+    public void setComponentDao(ComponentDao componentDao) {
+        this.componentDao = componentDao;
+        this.dao = this.componentDao;
     }
 
     @Override

@@ -15,6 +15,6 @@ spring:
         enabled: true
         service-id: config-server
       fail-fast: false
-      profile: dev2
+      profile: dev3
       name: core
       label: master

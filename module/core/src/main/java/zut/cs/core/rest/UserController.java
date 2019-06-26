@@ -37,8 +37,8 @@ public class UserController extends GenericController<User, Long, UserManager> {
     //设置用户页面
     @ApiOperation(value = "设置用户页面")
     @PostMapping("setPages")
-    public void setPages(@RequestParam String userId,@RequestParam List<String> pages) {
-        User user=userManager.findById(Long.valueOf(userId));
+    public void setPages(@RequestParam String userId, @RequestParam List<String> pages) {
+        User user = userManager.findById(Long.valueOf(userId));
         user.setTheme(pages.get(2));
         user.setPage1(pages.get(0));
         user.setPage2(pages.get(1));

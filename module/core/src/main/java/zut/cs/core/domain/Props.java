@@ -2,27 +2,28 @@ package zut.cs.core.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import zut.cs.core.base.domain.BaseEntity;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Props")
 public class Props extends BaseEntity {
-    @Column(name = "Props_name",unique = true,nullable = false)//lieming
+    @Column(name = "Props_name", unique = true, nullable = false)//lieming
     private String prtysName;
 
-    @Column(name = "Prtys_Instruct",nullable = false)//shuoming
+    @Column(name = "Prtys_Instruct", nullable = false)//shuoming
     private String PrtysInstruct;
 
-    @Column(name = "PropertyType",nullable = false)//shuxingleixing
-    private String  propertyType;
+    @Column(name = "PropertyType", nullable = false)//shuxingleixing
+    private String propertyType;
 
-    @Column(name = "Prtys_IsKey",nullable = false)//zhujian
+    @Column(name = "Prtys_IsKey", nullable = false)//zhujian
     private Boolean prtysIsKey;
 
-    @Column(name = "Prtys_isnull",nullable = false)//kekong
+    @Column(name = "Prtys_isnull", nullable = false)//kekong
     private Boolean PrtysIsnull;
 
-    @Column(name = "Prtys_Long",nullable =false)//zifuchangdu
+    @Column(name = "Prtys_Long", nullable = false)//zifuchangdu
     private String prtysLong;
 
     public Boolean getPrtys_IsUnique() {
@@ -33,20 +34,22 @@ public class Props extends BaseEntity {
         this.prtys_IsUnique = prtys_IsUnique;
     }
 
-    @Column(name = "Prtys_Isindex",nullable = false)
+    @Column(name = "Prtys_Isindex", nullable = false)
     private Boolean prtys_Isindex;
 
-    @Column(name = "Prtys_IsUnique",nullable = false)
+    @Column(name = "Prtys_IsUnique", nullable = false)
     private Boolean prtys_IsUnique;
 
-    @ManyToOne(cascade = {CascadeType.MERGE,CascadeType.REFRESH,CascadeType.PERSIST}, optional = true,fetch =FetchType.LAZY)
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST}, optional = true, fetch = FetchType.LAZY)
     private TableMessage tableMessage;
 
     public String getPrtysName() {
         return prtysName;
     }
 
-    public void setPrtysName(String prtysName) { this.prtysName = prtysName; }
+    public void setPrtysName(String prtysName) {
+        this.prtysName = prtysName;
+    }
 
     public String getPrtysInstruct() {
         return PrtysInstruct;
@@ -95,6 +98,7 @@ public class Props extends BaseEntity {
     public void setPrtysLong(String prtysLong) {
         this.prtysLong = prtysLong;
     }
+
     @JsonIgnore
     public TableMessage getTableMessage() {
         return tableMessage;

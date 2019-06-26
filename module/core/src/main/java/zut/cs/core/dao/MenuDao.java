@@ -5,6 +5,6 @@ import zut.cs.core.domain.Menu;
 
 import java.util.List;
 
-public interface MenuDao extends GenericTreeDao<Menu,Long> {
+public interface MenuDao extends GenericTreeDao<Menu, Long> {
     List<Menu> findMenusByParentIsNull();
 }

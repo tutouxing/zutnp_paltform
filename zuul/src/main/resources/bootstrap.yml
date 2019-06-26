@@ -16,5 +16,5 @@ spring:
         service-id: config-server
       fail-fast: false
       name: zuul
-      profile: dev
+      profile: dev1
       label: master

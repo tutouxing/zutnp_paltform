@@ -1,9 +1,12 @@
 package zut.cs.core.service;
 
 import zut.cs.core.base.service.GenericManager;
+import zut.cs.core.domain.Content;
 import zut.cs.core.domain.Picture;
 
-public interface PictureManager extends GenericManager<Picture,Long> {
+import java.util.List;
+
+public interface PictureManager extends GenericManager<Picture, Long> {
     /**
      * @Description: java类作用描述
 
@@ -13,5 +16,4 @@ public interface PictureManager extends GenericManager<Picture,Long> {
 
      */
 //    List<Picture> findByContent(Content content);
-    Picture findByUrl(String url);
 }

@@ -1,4 +1,4 @@
-package zut.cs.util;
+package zut.cs.core.util;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;

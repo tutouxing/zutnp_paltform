@@ -16,7 +16,7 @@ import java.util.Set;
 
 */
 @Service
-class ChannelManagerImpl  extends GenericManagerImpl<Channel, Long> implements ChannelManager {
+class ChannelManagerImpl extends GenericManagerImpl<Channel, Long> implements ChannelManager {
 
     ChannelDao channelDao;
 

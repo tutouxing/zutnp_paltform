@@ -1,5 +1,7 @@
 package zut.cs.core.service.impl;
 
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import zut.cs.core.base.service.impl.GenericTreeManagerImpl;
 import zut.cs.core.dao.MenuDao;
@@ -19,18 +21,21 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class MenuManagerImpl extends GenericTreeManagerImpl<Menu,Long> implements MenuManager {
+//@CacheConfig(cacheNames = "menu")
+public class MenuManagerImpl extends GenericTreeManagerImpl<Menu, Long> implements MenuManager {
     MenuDao menuDao;
+
     @Autowired
-    public void setMenuDao(MenuDao menuDao){
-        this.menuDao=menuDao;
-        this.treeDao=this.menuDao;
-        this.dao=this.treeDao;
+    public void setMenuDao(MenuDao menuDao) {
+        this.menuDao = menuDao;
+        this.treeDao = this.menuDao;
+        this.dao = this.treeDao;
     }
 
-    @Cacheable(value = "menu")
+//    @Cacheable(value = "menus")
     @Override
     public List<Menu> findAllMneus() {
         return menuDao.findMenusByParentIsNull();
     }
+
 }

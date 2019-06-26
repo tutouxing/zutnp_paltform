@@ -32,8 +32,7 @@ public interface GenericManager<T extends BaseEntity, PK extends Serializable> {
     /**
      * fetch specified entity according id;
      *
-     * @param id
-     *            entity id;
+     * @param id entity id;
      * @return entity
      */
     public T findById(PK id);
@@ -47,8 +46,7 @@ public interface GenericManager<T extends BaseEntity, PK extends Serializable> {
     /**
      * save specified entity;
      *
-     * @param entity
-     *            entity for saving
+     * @param entity entity for saving
      * @return saved dao entity
      */
     public T save(T entity);

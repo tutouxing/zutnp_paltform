@@ -1,5 +1,8 @@
 package zut.cs.core.base.service.impl;
 
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import zut.cs.core.base.dao.GenericDao;
 import zut.cs.core.base.domain.BaseEntity;
 import zut.cs.core.base.service.GenericManager;

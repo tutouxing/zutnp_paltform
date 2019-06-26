@@ -23,12 +23,12 @@ import ${TablePackageNameLoad}.dao.${tablePackageName}.domain.${tableName};
 */
 
 public interface ${tableName}Manager <#if TableType=="ALONE">extends GenericManager<${tableName}, Long> <#else >extends GenericTreeManager<${tableName},Long></#if>{
-    ${tableName} findBy${tableName}Name(String ${tableName}Name);
+${tableName} findBy${tableName}Name(String ${tableName}Name);
     Boolean updata(${tableName} ${tableLowName});
-    <#list ConnectionMapList as connection>
-        <#if connection.ConnectionTableConnectionType=="ManyToMany"&&connection.ConnectionTableConnectionPropsOneOrTwo==true>
+<#list ConnectionMapList as connection>
+    <#if connection.ConnectionTableConnectionType=="ManyToMany"&&connection.ConnectionTableConnectionPropsOneOrTwo==true>
     Boolean deleteIntermediateTable${tableName}To${connection.ConnectionSonTableName}(${tableName} ${tableLowName},${connection.ConnectionSonTableName} ${connection.ConnectionLowSonTableName});
     Boolean addIntermediateTable${tableName}To${connection.ConnectionSonTableName}(${tableName} ${tableLowName},${connection.ConnectionSonTableName} ${connection.ConnectionLowSonTableName});
-        </#if>
-    </#list>
+    </#if>
+</#list>
 }

@@ -10,7 +10,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @MappedSuperclass
-@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
 public class BaseEntity extends BaseDomain {
 
     private static final long serialVersionUID = -6163675075289529459L;
@@ -18,7 +18,7 @@ public class BaseEntity extends BaseDomain {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "DATECREATED")
-    @JsonFormat(pattern = "yyy-MM-dd",timezone = "GMT+8")
+    @JsonFormat(pattern = "yyy-MM-dd", timezone = "GMT+8")
     protected Date dateCreated = new Date();
 
     /**
@@ -26,7 +26,7 @@ public class BaseEntity extends BaseDomain {
      */
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "DATEMODIFIED")
-    @JsonFormat(pattern = "yyy-MM-dd",timezone = "GMT+8")
+    @JsonFormat(pattern = "yyy-MM-dd", timezone = "GMT+8")
     protected Date dateModified = new Date();
 
     /**

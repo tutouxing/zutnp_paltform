@@ -12,5 +12,8 @@ import java.util.List;
 
 public interface ContentManager extends GenericManager<Content, Long> {
     List<Content> findByTitle(String title);
-    List<Content> findAll(long userId,long channelId);
+
+    List<Content> findAll(Long userId, Long channelId);
+
+    Content addByChannelAndUser(Content content, String channelId, String userId);
 }

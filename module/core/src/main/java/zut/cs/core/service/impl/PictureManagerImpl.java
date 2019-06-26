@@ -8,18 +8,16 @@ import zut.cs.core.domain.Picture;
 import zut.cs.core.service.PictureManager;
 
 @Service
-public class PictureManagerImpl extends GenericManagerImpl<Picture,Long> implements PictureManager {
+public class PictureManagerImpl extends GenericManagerImpl<Picture, Long> implements PictureManager {
     /**
      * @Description: java类作用描述
-
      * @Author: wastelands
-
      * @CreateDate: 2019/5/14$ 15:31$
-
      */
     PictureDao pictureDao;
+
     @Autowired
-    public void setPictureDao(PictureDao pictureDao){
+    public void setPictureDao(PictureDao pictureDao) {
         this.pictureDao = pictureDao;
         this.dao = this.pictureDao;
     }

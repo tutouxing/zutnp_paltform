@@ -5,6 +5,6 @@ import zut.cs.core.domain.Group;
 
 import java.util.List;
 
-public interface GroupDao extends GenericTreeDao<Group,Long> {
+public interface GroupDao extends GenericTreeDao<Group, Long> {
     List<Group> findGroupsByParentIsNull();
 }

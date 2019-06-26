@@ -21,7 +21,7 @@ public class PropsManagerImpl extends GenericManagerImpl<Props, Long> implements
 
     @Override
     public Props findByPropsName(String PropsName) {
-        Props props=this.propsDao.findByProps_name(PropsName);
+        Props props = this.propsDao.findByProps_name(PropsName);
         return props;
     }
 

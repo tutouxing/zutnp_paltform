@@ -11,11 +11,12 @@ import zut.cs.core.service.ComponentManager;
 @RestController
 @RequestMapping("component/")
 @Api(tags = "组件接口")
-public class ComponentController extends GenericController<Component,Long,ComponentManager> {
+public class ComponentController extends GenericController<Component, Long, ComponentManager> {
     ComponentManager componentManager;
+
     @Autowired
-    public void setComponentManager(ComponentManager componentManager){
-        this.componentManager=componentManager;
-        this.manager=this.componentManager;
+    public void setComponentManager(ComponentManager componentManager) {
+        this.componentManager = componentManager;
+        this.manager = this.componentManager;
     }
 }

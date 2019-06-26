@@ -10,14 +10,14 @@ import java.util.List;
 
 @Table(name = "TableMessage")
 @Entity
-@NamedQueries({ @NamedQuery(name = "TableMessage.getRoot", query = "select g from TableMessage g where g.parent is null") })
+@NamedQueries({@NamedQuery(name = "TableMessage.getRoot", query = "select g from TableMessage g where g.parent is null")})
 public class TableMessage extends BaseTreeEntity<TableMessage> {
     private static final long serialVersionUID = -1751952224371998469L;
 
-    @Column(name = "Table_Name",unique = true,nullable = false)//biaoming
+    @Column(name = "Table_Name", unique = true, nullable = false)//biaoming
     private String tablename;
 
-    @Column(name = "Table_Instruction",nullable = false)//shuoming
+    @Column(name = "Table_Instruction", nullable = false)//shuoming
     private String tableInstruction;
 
     public Boolean getHave_Connect() {
@@ -28,28 +28,28 @@ public class TableMessage extends BaseTreeEntity<TableMessage> {
         this.have_Connect = have_Connect;
     }
 
-    @Column(name = "have_Connect",unique = true,nullable = true)//shifouyoufubiao
+    @Column(name = "have_Connect", unique = true, nullable = true)//shifouyoufubiao
     private Boolean have_Connect;
 
-    @Column(name = "TableType",nullable = false)//ALONE代表单表或者一对多，TREE代表属性结构
+    @Column(name = "TableType", nullable = false)//ALONE代表单表或者一对多，TREE代表属性结构
     private String tableType;
 
     @Column(name = "Authod")
     private String authod;
 
-    @Column(name = "PackageName",nullable = false)//包名
+    @Column(name = "PackageName", nullable = false)//包名
     private String packageName;
 
-    @Column(name = "PackageNameLoad",nullable = false)//包路径
+    @Column(name = "PackageNameLoad", nullable = false)//包路径
     private String packageNameLoad;
 
-    @Column(name = "ProjectName",nullable = false)//项目名
+    @Column(name = "ProjectName", nullable = false)//项目名
     private String projectName;
 
-    @Column(name = "ModuleName",nullable = false)//模块名
+    @Column(name = "ModuleName", nullable = false)//模块名
     private String moduleName;
 
-    @Column(name = "SonNumber",columnDefinition="INT default 0",nullable=false)
+    @Column(name = "SonNumber", columnDefinition = "INT default 0", nullable = false)
     private int sonNumber;
 
     public int getSonNumber() {
@@ -77,12 +77,12 @@ public class TableMessage extends BaseTreeEntity<TableMessage> {
     }
 
     @Fetch(FetchMode.SELECT)
-    @OneToMany(mappedBy = "tableMessage", cascade ={CascadeType.ALL},  fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "tableMessage", cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JsonIgnore
     private List<zut.cs.core.domain.Props> Props;
 
     @Fetch(FetchMode.SELECT)
-    @OneToMany(mappedBy = "tableMessage", cascade ={CascadeType.REFRESH},  fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "tableMessage", cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
     @JsonIgnore
     private List<Connection> connections;
 

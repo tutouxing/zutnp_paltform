@@ -17,12 +17,13 @@ import javax.transaction.Transactional;
  */
 @Service
 @Transactional
-public class ElementManagerImpl extends GenericManagerImpl<Element,Long> implements ElementManager {
+public class ElementManagerImpl extends GenericManagerImpl<Element, Long> implements ElementManager {
     ElementDao elementDao;
+
     @Autowired
-    public void setElementDao(ElementDao elementDao){
-        this.elementDao=elementDao;
-        this.dao=this.elementDao;
+    public void setElementDao(ElementDao elementDao) {
+        this.elementDao = elementDao;
+        this.dao = this.elementDao;
     }
 
 }

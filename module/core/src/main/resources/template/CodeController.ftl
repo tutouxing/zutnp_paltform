@@ -32,18 +32,18 @@ import zut.cs.core.rest.GenericTreeController;
 
 
 /*
-    <#if tableAuthod??>
+<#if tableAuthod??>
     Authod：${tableAuthod}
-    <#else>
+<#else>
     Authod：NoOne！
-    </#if>
+</#if>
 
 */
 
 @Controller
 @RequestMapping("/${tableName}")
 public class ${tableName}Controller <#if TableType=="ALONE">extends GenericController<${tableName},Long,${tableName}Manager> <#else >extends GenericTreeController<${tableName}, Long, ${tableName}Manager></#if>{
-    ${tableName}Manager ${tableLowName}Manager;
+${tableName}Manager ${tableLowName}Manager;
 
     @Autowired
     public void set${tableName}Manager(${tableName}Manager ${tableLowName}Manager) {
@@ -71,7 +71,7 @@ public class ${tableName}Controller <#if TableType=="ALONE">extends GenericContr
     @ResponseBody
     public List<${tableName}> list(){
     List<${tableName}> ${tableLowName}List=new ArrayList<${tableName}>();
-        ${tableLowName}List=this.${tableLowName}Manager.findAll();
+${tableLowName}List=this.${tableLowName}Manager.findAll();
         return ${tableLowName}List;
         }
 
@@ -82,17 +82,17 @@ public class ${tableName}Controller <#if TableType=="ALONE">extends GenericContr
             if(this.${tableLowName}Manager.findBy${tableName}Name(${tableLowName}.get${tableName}Name())!=null) {
                 return false;
             }
-        <#list ConnectionMapList as connection>
-             <#if connection.ConnectionTableConnectionPropsOneOrTwo==false&&connection.ConnectionParentTableName??==false>
-                 ${connection.ConnectionParentTableName} ${connection.ConnectionLowParentTableName}=this.${connection.ConnectionLowParentTableName}Manager.findBy${connection.ConnectionParentTableName}Name(${connection.ConnectionParentTableName}Name);
+<#list ConnectionMapList as connection>
+    <#if connection.ConnectionTableConnectionPropsOneOrTwo==false&&connection.ConnectionParentTableName??==false>
+        ${connection.ConnectionParentTableName} ${connection.ConnectionLowParentTableName}=this.${connection.ConnectionLowParentTableName}Manager.findBy${connection.ConnectionParentTableName}Name(${connection.ConnectionParentTableName}Name);
                     if(${connection.ConnectionLowParentTableName}==null){
                         return false;
                     }
                     else{
-                        ${tableLowName}.set${connection.ConnectionParentTableName}(${connection.ConnectionLowParentTableName});
+        ${tableLowName}.set${connection.ConnectionParentTableName}(${connection.ConnectionLowParentTableName});
                     }
-             </#if>
-        </#list>
+    </#if>
+</#list>
             this.${tableLowName}Manager.save(${tableLowName});
             if(this.${tableLowName}Manager.findBy${tableName}Name(${tableLowName}.get${tableName}Name())!=null) {
                 return true;
@@ -192,11 +192,11 @@ public class ${tableName}Controller <#if TableType=="ALONE">extends GenericContr
         @ResponseBody//删除中间表的关系
         @PostMapping(value = "/deleteIntermediateTable${tableName}To${connection.ConnectionSonTableName}")
         public Boolean deleteIntermediateTable${tableName}To${connection.ConnectionSonTableName}(@RequestParam("${tableName}Name") String ${tableLowName}Name, @RequestParam("${connection.ConnectionSonTableName}Name") String ${connection.ConnectionLowSonTableName}Name){
-            ${tableName} ${tableLowName}=this.${tableLowName}Manager.findBy${tableName}Name(${tableLowName}Name);
+        ${tableName} ${tableLowName}=this.${tableLowName}Manager.findBy${tableName}Name(${tableLowName}Name);
             if (${tableLowName}==null){
                 return false;
             }
-            ${connection.ConnectionSonTableName} ${connection.ConnectionLowSonTableName}=this.${connection.ConnectionLowSonTableName}Manager.findBy${connection.ConnectionSonTableName}Name(${connection.ConnectionLowSonTableName}Name);
+        ${connection.ConnectionSonTableName} ${connection.ConnectionLowSonTableName}=this.${connection.ConnectionLowSonTableName}Manager.findBy${connection.ConnectionSonTableName}Name(${connection.ConnectionLowSonTableName}Name);
             if (${connection.ConnectionLowSonTableName}==null){
                 return false;
             }
@@ -209,11 +209,11 @@ public class ${tableName}Controller <#if TableType=="ALONE">extends GenericContr
     @PostMapping(value = "/addIntermediateTable${tableName}To${connection.ConnectionSonTableName}")
     public Boolean addIntermediateTable${tableName}To${connection.ConnectionSonTableName}(@RequestParam("${tableName}Name") String ${tableLowName}Name,
                                                         @RequestParam("${connection.ConnectionSonTableName}Name") String ${connection.ConnectionLowSonTableName}Name){
-            ${tableName} ${tableLowName}=this.${tableLowName}Manager.findBy${tableName}Name(${tableLowName}Name);
+        ${tableName} ${tableLowName}=this.${tableLowName}Manager.findBy${tableName}Name(${tableLowName}Name);
             if (${tableLowName}==null){
                 return false;
             }
-            ${connection.ConnectionSonTableName} ${connection.ConnectionLowSonTableName}=this.${connection.ConnectionLowSonTableName}Manager.findBy${connection.ConnectionSonTableName}Name(${connection.ConnectionLowSonTableName}Name);
+        ${connection.ConnectionSonTableName} ${connection.ConnectionLowSonTableName}=this.${connection.ConnectionLowSonTableName}Manager.findBy${connection.ConnectionSonTableName}Name(${connection.ConnectionLowSonTableName}Name);
             if (${connection.ConnectionLowSonTableName}==null){
                 return false;
             }

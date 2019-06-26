@@ -17,11 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("element")
 @Api(tags = "元素接口，(没用)")
-public class ElementController extends GenericController<Element,Long,ElementManager> {
+public class ElementController extends GenericController<Element, Long, ElementManager> {
     ElementManager elementManager;
+
     @Autowired
-    public void setElementManager(ElementManager elementManager){
-        this.elementManager=elementManager;
-        this.manager=this.elementManager;
+    public void setElementManager(ElementManager elementManager) {
+        this.elementManager = elementManager;
+        this.manager = this.elementManager;
     }
 }

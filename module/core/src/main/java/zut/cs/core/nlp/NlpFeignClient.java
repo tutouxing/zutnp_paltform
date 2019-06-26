@@ -2,9 +2,9 @@ package zut.cs.core.nlp;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -12,22 +12,22 @@ import java.util.List;
 public interface NlpFeignClient {
 
     @RequestMapping(value = "/nlp_en/dependency", method = RequestMethod.POST)
-    public String getEnglishDependency(@RequestParam("text") String text);
+    String getEnglishDependency(@RequestBody String text);
 
     @RequestMapping(value = "/nlp_ch/dependency", method = RequestMethod.POST)
-    public String getChineseDependency(@RequestParam("text") String text);
+    String getChineseDependency(@RequestBody String text);
 
     @RequestMapping(value = "/nlp_en/tree", method = RequestMethod.POST)
-    public String getEnglishTree(@RequestParam("text") String text);
+    String getEnglishTree(@RequestBody String text);
 
     @RequestMapping(value = "/nlp_ch/tree", method = RequestMethod.POST)
-    public String getChineseTree(@RequestParam("text") String text);
+    String getChineseTree(@RequestBody String text);
 
     @RequestMapping(value = "/nlp_en/wpn", method = RequestMethod.POST)
-    public List<Object> getEnglishWpn(@RequestParam("text") String text);
+    List<Object> getEnglishWpn(@RequestBody String text);
 
     @RequestMapping(value = "/nlp_ch/wpn", method = RequestMethod.POST)
-    public List<Object> getChineseWpn(@RequestParam("text") String text);
+    List<Object> getChineseWpn(@RequestBody String text);
 }
 
 @Component
