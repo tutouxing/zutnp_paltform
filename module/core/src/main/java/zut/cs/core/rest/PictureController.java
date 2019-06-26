@@ -13,6 +13,9 @@ import zut.cs.core.service.PictureManager;
 import zut.cs.core.util.FileNameUtils;
 import zut.cs.core.util.FileUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 @RequestMapping("/picture")
 @Api("图片接口")
@@ -43,9 +46,8 @@ public class PictureController extends GenericController<Picture, Long, PictureM
 //    @Value("${spring.servlet.multipart.location}")
     private String path;
 
-    @ResponseBody
-    @RequestMapping("/fileUpload")
-    public String upload(@RequestParam("file") MultipartFile file) {
+    @PostMapping("/fileUpload")
+    public List<Picture> upload(@RequestParam("file") MultipartFile file) {
         //1定义要上传文件 的存放路径
         String localPath = "E:/images/upload";
         //2获得文件名字

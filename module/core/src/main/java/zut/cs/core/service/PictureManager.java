@@ -15,5 +15,5 @@ public interface PictureManager extends GenericManager<Picture, Long> {
      * @CreateDate: 2019/5/14$ 15:29$
 
      */
-//    List<Picture> findByContent(Content content);
+    Picture findByUrl(String url);
 }

@@ -5,6 +5,7 @@ import lombok.Setter;
 import zut.cs.core.base.domain.BaseEntity;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 @Entity
 @Setter
