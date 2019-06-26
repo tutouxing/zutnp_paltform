@@ -8,3 +8,4 @@ libraries
 /zuul/*.iml
 /module/core/*.iml
 /module/nlp/nlp.iml
+/config-server/*.iml
