@@ -24,8 +24,5 @@ public class Menu extends BaseTreeEntity<Menu> {
     private String description;
     @JsonIgnore
     @ManyToMany(mappedBy = "menus", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-    Set<Element> elements;
-    @JsonIgnore
-    @ManyToMany(mappedBy = "menus", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     Set<Group> groups;
 }
