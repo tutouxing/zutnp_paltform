@@ -43,8 +43,7 @@ public class PictureController extends GenericController<Picture, Long, PictureM
     @Value("${spring.servlet.multipart.location}")
     private String path;
 
-    @ResponseBody
-    @RequestMapping("/fileUpload")
+    @PostMapping("/fileUpload")
     public String upload(@RequestParam("file") MultipartFile file) {
         //1定义要上传文件 的存放路径
         String localPath = "E:/images/upload";

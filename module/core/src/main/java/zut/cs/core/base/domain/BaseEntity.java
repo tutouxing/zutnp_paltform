@@ -17,29 +17,24 @@ public class BaseEntity extends BaseDomain {
 
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "DATECREATED")
-    @JsonFormat(pattern = "yyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     protected Date dateCreated = new Date();
 
     /**
      * 实体修改时间
      */
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "DATEMODIFIED")
-    @JsonFormat(pattern = "yyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     protected Date dateModified = new Date();
 
     /**
      * 实体是否被删除
      */
-    @Column(name = "DELETED")
     protected Boolean deleted;
 
-    @Column(name = "ENTITY_NAME")
     protected String entityName;
 
     @Id
-    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
 
