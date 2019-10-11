@@ -5,7 +5,8 @@ import zut.cs.core.domain.Component;
 import zut.cs.core.domain.User;
 
 import java.util.List;
+import java.util.Set;
 
 public interface ComponentManager extends GenericManager<Component, Long> {
-    List<Component> findByUser(User user);
+    Set<Component> findByUser(User user);
 }

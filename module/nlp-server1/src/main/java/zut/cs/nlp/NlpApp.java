@@ -11,11 +11,11 @@ import org.springframework.cloud.netflix.turbine.EnableTurbine;
 
 @EnableSwagger2Doc
 @SpringBootApplication
-@EnableEurekaClient
-@EnableHystrix
-@EnableHystrixDashboard
-@EnableCircuitBreaker
-@EnableTurbine
+//@EnableEurekaClient
+//@EnableHystrix
+//@EnableHystrixDashboard
+//@EnableCircuitBreaker
+//@EnableTurbine
 public class NlpApp {
     public static void main(String[] args) {
         SpringApplication.run(NlpApp.class);

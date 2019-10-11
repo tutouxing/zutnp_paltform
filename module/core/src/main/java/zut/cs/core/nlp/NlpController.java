@@ -1,6 +1,6 @@
 package zut.cs.core.nlp;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+//import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,38 +14,38 @@ public class NlpController {
     @Autowired
     NlpFeignClient nlpFeignClient;
 
-    @HystrixCommand
+//    @HystrixCommand
     @PostMapping("en/dependency")
     public String getEnDep(@RequestBody String text) {
         return nlpFeignClient.getEnglishDependency(text);
     }
 
-    @HystrixCommand
+//    @HystrixCommand
     @PostMapping("ch/dependency")
     public String getChDep(@RequestBody String text) {
         return nlpFeignClient.getChineseDependency(text);
     }
 
-    @HystrixCommand
+//    @HystrixCommand
     @PostMapping("en/tree")
     public String getEnTree(@RequestBody String text) {
         return nlpFeignClient.getEnglishTree(text);
     }
 
-    @HystrixCommand
+//    @HystrixCommand
     @PostMapping("ch/tree")
     public String getChTree(@RequestBody String text) {
         return nlpFeignClient.getChineseTree(text);
     }
 
-    @HystrixCommand
+//    @HystrixCommand
     @PostMapping("en/wpn")
     public List<Object> getEnWpn(@RequestBody String text) {
         return nlpFeignClient.getEnglishWpn(text);
     }
 
 
-    @HystrixCommand
+//    @HystrixCommand
     @PostMapping("ch/wpn")
     public List<Object> getChWpn(@RequestBody String text) {
         return nlpFeignClient.getChineseWpn(text);

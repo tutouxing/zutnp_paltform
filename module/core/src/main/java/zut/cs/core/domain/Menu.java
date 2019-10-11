@@ -18,10 +18,8 @@ import java.util.Set;
 @Setter
 @NamedQueries({@NamedQuery(name = "Menu.getRoot", query = "select m from Menu m where m.parent is null")})
 public class Menu extends BaseTreeEntity<Menu> {
-    private String code;
     private String title;
     private String path;
-    private String description;
     @JsonIgnore
     @ManyToMany(mappedBy = "menus", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     Set<Group> groups;

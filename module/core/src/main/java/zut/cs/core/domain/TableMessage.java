@@ -50,9 +50,9 @@ public class TableMessage extends BaseTreeEntity<TableMessage> {
     private String moduleName;
 
     @Column(name = "SonNumber", columnDefinition = "INT default 0", nullable = false)
-    private int sonNumber;
+    private Integer sonNumber;
 
-    public int getSonNumber() {
+    public Integer getSonNumber() {
         return sonNumber;
     }
 

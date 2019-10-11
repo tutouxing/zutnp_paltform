@@ -11,8 +11,9 @@ import java.util.Set;
 @Getter
 @Setter
 public class Channel extends BaseEntity {
-    private String enName;
+    private Integer today;
     private String chName;
+    private Integer history;
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")

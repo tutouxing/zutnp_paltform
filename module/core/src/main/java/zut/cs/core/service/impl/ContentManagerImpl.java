@@ -5,6 +5,7 @@ import org.springframework.cache.annotation.*;
 import org.springframework.stereotype.Service;
 import zut.cs.core.base.service.impl.GenericManagerImpl;
 import zut.cs.core.dao.ContentDao;
+import zut.cs.core.domain.Comment;
 import zut.cs.core.domain.Content;
 import zut.cs.core.service.ChannelManager;
 import zut.cs.core.service.ContentManager;
@@ -13,6 +14,7 @@ import zut.cs.core.service.UserManager;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 
 /*
@@ -61,7 +63,8 @@ public class ContentManagerImpl extends GenericManagerImpl<Content, Long> implem
         return content;
     }
 
-//    @CacheEvict(key = "#id", value = "content")
+
+    //    @CacheEvict(key = "#id", value = "content")
     @Override
     public void delete(Long id) {
         super.delete(id);

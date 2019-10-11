@@ -83,12 +83,13 @@ public class GroupManagerImpl extends GenericTreeManagerImpl<Group, Long> implem
     @Override
     public void addMenus(String groupId, List<String> menusId) {
         Group group = groupDao.getOne(Long.valueOf(groupId));
-        Set<Menu> menus = new HashSet<>();
+        Set<Menu> menus = group.getMenus();
         for (String menuId : menusId) {
             Menu menu = menuDao.getOne(Long.valueOf(menuId));
             menus.add(menu);
         }
         group.setMenus(menus);
+        groupDao.save(group);
     }
 
 //    @Cacheable(value = "group",key = "groupId")

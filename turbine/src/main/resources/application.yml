@@ -9,12 +9,3 @@ eureka:
 spring:
   application:
     name: turbine
-  cloud:
-    config:
-      discovery:
-        enabled: true
-        service-id: config-server
-      fail-fast: false
-      profile: dev
-      name: turbine
-      label: master

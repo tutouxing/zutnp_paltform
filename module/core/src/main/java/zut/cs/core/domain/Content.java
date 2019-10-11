@@ -6,8 +6,7 @@ import lombok.Setter;
 import zut.cs.core.base.domain.BaseEntity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -18,9 +17,9 @@ public class Content extends BaseEntity {
     private String text;
     private String textHref;
     private String type;
-    private int rank;
+    private Integer rank;
     private String publish;
-    private int click_count;
+    private Integer click_count;
     private String status;
     @JsonIgnore
     @ManyToOne
@@ -31,5 +30,7 @@ public class Content extends BaseEntity {
     @JoinColumn(name = "user_id")
     User user;
     @OneToMany
-    List<Picture> pictures;
+    Set<Picture> pictures;
+    @OneToMany(cascade = CascadeType.REMOVE)
+    Set<Comment> comments;
 }

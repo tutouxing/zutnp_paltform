@@ -10,21 +10,21 @@ import javax.persistence.*;
 import java.util.Date;
 
 @MappedSuperclass
-@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler","deleted","entityName"})
 public class BaseEntity extends BaseDomain {
 
     private static final long serialVersionUID = -6163675075289529459L;
 
 
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     protected Date dateCreated = new Date();
 
     /**
      * 实体修改时间
      */
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     protected Date dateModified = new Date();
 
     /**

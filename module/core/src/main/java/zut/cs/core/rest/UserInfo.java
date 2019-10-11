@@ -16,5 +16,5 @@ import java.util.Set;
 public class UserInfo implements Serializable {
     private Group group;
     private Set<Channel> channel;
-    private List<Component> components;
+    private Set<Component> components;
 }

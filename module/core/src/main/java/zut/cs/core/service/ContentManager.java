@@ -16,4 +16,6 @@ public interface ContentManager extends GenericManager<Content, Long> {
     List<Content> findAll(Long userId, Long channelId);
 
     Content addByChannelAndUser(Content content, String channelId, String userId);
+
+
 }

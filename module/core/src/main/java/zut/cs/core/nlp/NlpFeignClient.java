@@ -1,6 +1,6 @@
 package zut.cs.core.nlp;
 
-import org.springframework.cloud.openfeign.FeignClient;
+//import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
-@FeignClient(name = "nlp", fallback = NlpFallback.class)
+//@FeignClient(name = "nlp", fallback = NlpFallback.class)
 public interface NlpFeignClient {
 
     @RequestMapping(value = "/nlp_en/dependency", method = RequestMethod.POST)

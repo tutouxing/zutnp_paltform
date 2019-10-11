@@ -1,13 +1,12 @@
 package zut.cs.core.rest;
 
-//import edu.zut.cs.zutnlp.platform.dao.admin.domain.User;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import zut.cs.core.base.rest.GenericController;
 import zut.cs.core.domain.Channel;
-import org.springframework.beans.factory.annotation.Autowired;
 import zut.cs.core.domain.User;
 import zut.cs.core.service.ChannelManager;
 import zut.cs.core.service.UserManager;
@@ -17,10 +16,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 import java.util.Set;
 
-/*
-    Authod：dd
-
-*/
 @RestController
 @RequestMapping("/Channel")
 @Api(tags = "栏目接口")
@@ -43,6 +38,18 @@ public class ChannelController extends GenericController<Channel, Long, ChannelM
         model.setUser(userManager.findById(Long.valueOf(userId)));
         channelManager.save(model);
         return model;
+    }
+
+    @ApiOperation(value = "更新今日浏览量")
+    @PutMapping("update/today")
+    public String updateToday(@RequestBody Channel[] params) {
+        for (Channel param : params) {
+            Channel channel = channelManager.findById(param.getId());
+            channel.setToday(param.getToday());
+            channel.setHistory(param.getToday() + channel.getHistory());
+            channelManager.save(channel);
+        }
+        return "success";
     }
 
     @ApiOperation(value = "更改栏目")

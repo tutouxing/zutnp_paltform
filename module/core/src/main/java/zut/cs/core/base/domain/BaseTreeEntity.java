@@ -1,6 +1,7 @@
 package zut.cs.core.base.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -21,6 +22,7 @@ public class BaseTreeEntity<T extends BaseTreeEntity<T>> extends BaseEntity {
     List<T> children;
 
     @Transient
+    @JsonIgnore
     boolean leaf = true;
 
     @JsonBackReference("parent-children")

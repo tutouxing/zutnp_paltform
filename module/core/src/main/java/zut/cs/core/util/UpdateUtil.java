@@ -10,7 +10,7 @@ public class UpdateUtil {
 
     //    利用反射动态过滤出值不为null的参数 obj:传入的body，obj2:旧的body
     public static Object get(Object obj, Object obj2) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
-        Method[] methods = obj.getClass().getDeclaredMethods();
+        Method[] methods = obj.getClass().getMethods();
         for (Method method : methods) {
             if (method.getName().startsWith("get") && method.invoke(obj, null) != null) {
                 methodList.add(method);

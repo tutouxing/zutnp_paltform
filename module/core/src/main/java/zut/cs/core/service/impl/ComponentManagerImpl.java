@@ -9,6 +9,7 @@ import zut.cs.core.domain.User;
 import zut.cs.core.service.ComponentManager;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ComponentManagerImpl extends GenericManagerImpl<Component, Long> implements ComponentManager {
@@ -21,7 +22,7 @@ public class ComponentManagerImpl extends GenericManagerImpl<Component, Long> im
     }
 
     @Override
-    public List<Component> findByUser(User user) {
+    public Set<Component> findByUser(User user) {
         return componentDao.findByUser(user);
     }
 }

@@ -1,0 +1,32 @@
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://root:123456@localhost:18888/eureka/
+      appname: zuul
+spring:
+  application:
+    name: zuul
+zuul:
+  routes:
+    core-route:
+      service-id: core
+      path: core/**
+#    nlp-route:
+#      service-id: nlp
+#      path: nlp/**
+    admin-route:
+      service-id: admin-server
+      path: admin/**
+#    turbine-route:
+#      service-id: turbine
+#      path: turbine/**
+core-service:
+  ribbon:
+    listOfServices: 127.0.0.1:8848,127.0.0.1:8858
+    ReadTimeout: 15000
+    SocketTimeout: 15000
+server:
+  port: 8898
