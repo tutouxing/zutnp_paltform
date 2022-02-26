@@ -11,7 +11,7 @@
 
     <artifactId>nlp-server2</artifactId>
     <properties>
-        <corenlp.version>3.6.0</corenlp.version>
+        <corenlp.version>4.4.0</corenlp.version>
         <hystrix.version>1.4.6.RELEASE</hystrix.version>
     </properties>
     <dependencies>
